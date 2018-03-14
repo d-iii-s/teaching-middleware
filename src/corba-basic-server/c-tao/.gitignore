@@ -1,0 +1,9 @@
+*.o
+*.dep
+client
+server
+exampleC.h
+exampleC.inl
+exampleC.cpp
+exampleS.h
+exampleS.cpp

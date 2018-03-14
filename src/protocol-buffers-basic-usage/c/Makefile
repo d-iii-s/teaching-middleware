@@ -35,7 +35,7 @@ example.cc: example.pb.h
 	$(CC) $(CC_OPTS) -c -o $@ $<
 
 %.pb.h %.pb.cc: %.proto
-	protoc --cpp_out="." example.proto
+	protoc --cpp_out="." $<
 
 # Deps
 

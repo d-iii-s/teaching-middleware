@@ -42,7 +42,7 @@ server.cc: example.pb.h example.grpc.pb.h
 	$(CC) $(CC_OPTS) -c -o $@ $<
 
 %.pb.h %.pb.cc %.grpc.pb.h %.grpc.pb.cc: %.proto
-	protoc --plugin=protoc-gen-grpc=$(shell pkg-config --variable=exec_prefix grpc++)/bin/grpc_cpp_plugin --cpp_out="." --grpc_out="." example.proto
+	protoc --plugin=protoc-gen-grpc=$(shell pkg-config --variable=exec_prefix grpc++)/bin/grpc_cpp_plugin --cpp_out="." --grpc_out="." $<
 
 # Deps
 

@@ -1,0 +1,11 @@
+valuetype AValueBundle
+{
+  public string text;
+  public long number;
+  void display ();
+};
+
+interface AnExampleService
+{
+    void display (in AValueBundle bundle);
+};

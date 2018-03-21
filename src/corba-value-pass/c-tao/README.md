@@ -1,4 +1,4 @@
-# CORBA TAO Based Server
+# CORBA TAO Based Value Pass
 
 ## Requirements
 

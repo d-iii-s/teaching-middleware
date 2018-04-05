@@ -63,6 +63,12 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>durable-topic-consumer</id>
+                        <configuration>
+                            <mainClass>DurableTopicConsumer</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>verbose-topic-consumer</id>
                         <configuration>
                             <mainClass>VerboseTopicConsumer</mainClass>

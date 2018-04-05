@@ -20,3 +20,4 @@ Then, use separate windows to run producers and consumers at your leisure.
 - Use `mvn exec:java@topic-producer` to launch a producer that puts text messages into a topic.
 - Use `mvn exec:java@topic-consumer` to launch a consumer that prints text messages from a topic.
 - Use `mvn exec:java@verbose-topic-consumer` to launch a consumer that prints the messages with headers.
+- Use `mvn exec:java@durable-topic-consumer` to launch a consumer that gets the messages from durable storage.

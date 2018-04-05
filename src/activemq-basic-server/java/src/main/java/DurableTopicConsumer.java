@@ -1,13 +1,13 @@
 import javax.jms.Connection;
-import javax.jms.Destination;
 import javax.jms.MessageConsumer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import javax.jms.Topic;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-public class TopicConsumer {
+public class DurableTopicConsumer {
     public static void main (String [] sArgs) {
         try {
             // Acquire broker connection factory.
@@ -31,10 +31,10 @@ public class TopicConsumer {
             // the first client to use the destination name will cause
             // the destination to be created, all other clients will
             // simply connect to the same destination.
-            Destination topic = session.createTopic (Shared.TOPIC_NAME);
+            Topic topic = session.createTopic (Shared.TOPIC_NAME);
 
-            // Keep receiving messages.
-            MessageConsumer consumer = session.createConsumer (topic);
+            // Register as durable consumer and keep receiving messages.
+            MessageConsumer consumer = session.createDurableSubscriber (topic, "SomeSubscriptionName");
 
             while (true) {
                 TextMessage message = (TextMessage) consumer.receive ();

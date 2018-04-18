@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>d3s</groupId>
-    <artifactId>hazelcast-basic-server</artifactId>
+    <artifactId>hazelcast-basic-peer</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

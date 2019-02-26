@@ -1,3 +1,5 @@
+#include <chrono>
+#include <thread>
 #include <iostream>
 
 #include <grpc++/grpc++.h>
@@ -25,15 +27,21 @@ int main ()
     std::cout << message.DebugString () << std::endl;
 
     grpc::ClientContext context;
-    MoreExampleMessages response;
 
     // Call the service through the stub object.
-    grpc::Status status = stub->CloneMessage (&context, message, &response);
-
-    if (status.ok ()) {
-        std::cout << "Response:" << std::endl;
-        std::cout << response.DebugString () << std::endl;
+    std::shared_ptr<grpc::ClientReaderWriter<AnExampleMessage, AnExampleMessage>> request_response (stub->EchoMessages (&context));
+    for (int i = 0 ; i < 8 ; i ++) {
+        if (request_response->Write (message)) {
+            if (request_response->Read (&message)) {
+                std::cout << "Response:" << std::endl;
+                std::cout << message.DebugString () << std::endl;
+            }
+        }
+        std::this_thread::sleep_for (std::chrono::milliseconds (666));
     }
+    request_response->WritesDone ();
+
+    grpc::Status status_reader = request_response->Finish ();
 
     return (0);
 }

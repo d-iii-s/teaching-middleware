@@ -31,6 +31,8 @@ int main ()
     // Call the service through the stub object.
     std::shared_ptr<grpc::ClientReaderWriter<AnExampleMessage, AnExampleMessage>> request_response (stub->EchoMessages (&context));
     for (int i = 0 ; i < 8 ; i ++) {
+        // Send messages through the stream.
+        // This uses a blocking interface for simplicity.
         if (request_response->Write (message)) {
             if (request_response->Read (&message)) {
                 std::cout << "Response:" << std::endl;
@@ -39,6 +41,7 @@ int main ()
         }
         std::this_thread::sleep_for (std::chrono::milliseconds (666));
     }
+    // Notify about the end of the stream.
     request_response->WritesDone ();
 
     grpc::Status status_reader = request_response->Finish ();

@@ -8,10 +8,11 @@ Use for example http://www.voxforge.org. The service can accept WAV and FLAC fil
 
 ```
 > python3 -m venv .
-> bin/pip install requests protobuf grpcio google-auth
+> . bin/activate
+> pip install requests protobuf grpcio google-auth
 > git clone http://github.com/googleapis/googleapis.git
 > cd googleapis
-> make OUTPUT=.. LANGUAGE=python GRPCPLUGIN=$(pkg-config --variable=prefix grpc++)/bin/grpc_python_plugin
+> make OUTPUT=.. LANGUAGE=python PROTOINCLUDE=$(pkg-config --variable=includedir protobuf) GRPCPLUGIN=$(pkg-config --variable=prefix grpc++)/bin/grpc_python_plugin google/cloud/speech/v1/cloud_speech.pb.cc
 > cd ..
-> bin/python client.py /path/to/speech.wav
+> python client.py /path/to/speech.wav
 ```

@@ -19,6 +19,7 @@ public class DurableTopicConsumer {
 
             // Create and start a connection to the broker.
             Connection connection = connectionFactory.createConnection ();
+            connection.setClientID ("SomeClientName");
             connection.start ();
 
             // Any communication takes place inside session.

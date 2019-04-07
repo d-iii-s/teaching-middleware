@@ -1,4 +1,4 @@
-# ActiveMQ Based JMS Server
+# ActiveMQ Based JMS Client
 
 ## Running the example
 

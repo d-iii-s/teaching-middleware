@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>d3s</groupId>
-    <artifactId>activemq-jndi-server</artifactId>
+    <artifactId>activemq-basic-client</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -43,27 +43,45 @@
                 <version>1.6.0</version>
                 <executions>
                     <execution>
-                        <id>initial-producer</id>
+                        <id>queue-producer</id>
                         <configuration>
-                            <mainClass>InitialProducer</mainClass>
+                            <mainClass>QueueProducer</mainClass>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>splitter</id>
+                        <id>queue-consumer</id>
                         <configuration>
-                            <mainClass>Splitter</mainClass>
+                            <mainClass>QueueConsumer</mainClass>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>text-consumer</id>
+                        <id>verbose-queue-consumer</id>
                         <configuration>
-                            <mainClass>TextConsumer</mainClass>
+                            <mainClass>VerboseQueueConsumer</mainClass>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>number-consumer</id>
+                        <id>topic-producer</id>
                         <configuration>
-                            <mainClass>NumberConsumer</mainClass>
+                            <mainClass>TopicProducer</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>topic-consumer</id>
+                        <configuration>
+                            <mainClass>TopicConsumer</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>durable-topic-consumer</id>
+                        <configuration>
+                            <mainClass>DurableTopicConsumer</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>verbose-topic-consumer</id>
+                        <configuration>
+                            <mainClass>VerboseTopicConsumer</mainClass>
                         </configuration>
                     </execution>
                 </executions>

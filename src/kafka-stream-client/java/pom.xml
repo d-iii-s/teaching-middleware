@@ -17,6 +17,11 @@
             <artifactId>kafka-clients</artifactId>
             <version>2.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+            <version>2.2.0</version>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -39,9 +44,27 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>rewriter</id>
+                        <configuration>
+                            <mainClass>Rewriter</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>consumer</id>
                         <configuration>
                             <mainClass>Consumer</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>counter</id>
+                        <configuration>
+                            <mainClass>Counter</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>monitor</id>
+                        <configuration>
+                            <mainClass>Monitor</mainClass>
                         </configuration>
                     </execution>
                 </executions>

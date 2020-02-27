@@ -4,7 +4,6 @@
 
 ```
 > mvn compile
-> mvn exec:exec@registry &
 > mvn exec:java@server &
 > mvn exec:java@client
 ```

@@ -28,7 +28,6 @@
                         <id>server</id>
                         <configuration>
                             <mainClass>ExampleServer</mainClass>
-                            <keepAlive>true</keepAlive>
                         </configuration>
                     </execution>
                     <execution>

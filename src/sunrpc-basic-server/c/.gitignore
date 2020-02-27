@@ -1,0 +1,6 @@
+*.c
+*.h
+*.o
+example_client
+example_server
+Makefile.example

@@ -1,7 +1,8 @@
-program PRINT
-{
-  version VERSION
-  {
-    void PRINT_STRING (string STR) = 1;	/* function number 1  */
-  } = 1;				/* version number 1   */
-} = 666;				/* service number 666 */
+/* Unusual internal identifiers used so that
+   they can be easily recognized in raw dump. */
+
+program EXAMPLE {
+  version VERSION {
+    void PRINT_STRING (string STR) = 0xACE;    /* function number 0xACE     */
+  } = 0xBAD;                                   /* version number 0xBAD      */
+} = 0xCAFEFEED;                                /* service number 0xCAFEFEED */

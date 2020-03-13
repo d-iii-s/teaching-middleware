@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Last tested with OpenJDK 1.8.0-161 on Fedora 27.
+Last tested with OpenJDK 1.8.0-242 on Fedora 31.
 
 ## Running the example
 

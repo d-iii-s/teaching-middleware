@@ -6,17 +6,17 @@
 // The names of these files are not standardized,
 // so porting to another CORBA implementation
 // requires change here.
-#include "example.hh"
+#include "exampleS.h"
 
 
 // Service implementation.
 //
 // The implementation inherits from a generated base class.
 
-class AnExampleServiceServant : public POA_AnExampleService {
+class AnExampleServiceServant : public CORBA::servant_traits<AnExampleService>::base_type {
 public:
-    void display (const char *sText) {
-        std::cout << "omniORB server: " << sText << std::endl;
+    void display (const std::string &sText) {
+        std::cout << "TAOx11 server: " << sText << std::endl;
     };
 };
 
@@ -31,11 +31,11 @@ int main (int iArgC, char *apArgV []) {
         // vRootPOA refers to the root POA object, which registers servant objects.
         // vRootPOAManager refers to the manager of the root POA object, needed to activate POA.
 
-        CORBA::ORB_var vORB = CORBA::ORB_init (iArgC, apArgV);
+        auto vORB = CORBA::ORB_init (iArgC, apArgV);
 
-        CORBA::Object_var vRootPOABase = vORB->resolve_initial_references ("RootPOA");
-        PortableServer::POA_var vRootPOA = PortableServer::POA::_narrow (vRootPOABase);
-        PortableServer::POAManager_var vRootPOAManager = vRootPOA->the_POAManager ();
+        auto vRootPOABase = vORB->resolve_initial_references ("RootPOA");
+        auto vRootPOA = IDL::traits<PortableServer::POA>::narrow (vRootPOABase);
+        auto vRootPOAManager = vRootPOA->the_POAManager ();
 
         // Create one servant object.
         //
@@ -43,13 +43,13 @@ int main (int iArgC, char *apArgV []) {
         // The object is registered with the root POA when
         // the remote reference is created.
 
-        AnExampleServiceServant *pServant = new AnExampleServiceServant ();
-        CORBA::Object_var vServiceBase = vRootPOA->servant_to_reference (pServant);
+        auto vServant = CORBA::make_reference <AnExampleServiceServant> ();
+        auto vService = vRootPOA->servant_to_reference (vServant);
 
         // Export the remote reference for client use.
 
         std::ofstream oReferenceFile ("ior");
-        oReferenceFile << vORB->object_to_string (vServiceBase) << std::endl;
+        oReferenceFile << vORB->object_to_string (vService) << std::endl;
         oReferenceFile.close ();
 
         // Start listening for incoming invocations.
@@ -58,7 +58,6 @@ int main (int iArgC, char *apArgV []) {
         vORB->run ();
 
     } catch (const CORBA::SystemException &sEx) {
-        // Exception printing is not standardized.
-        std::cerr << sEx.NP_minorString () << std::endl;
+        std::cerr << sEx << std::endl;
     };
 };

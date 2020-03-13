@@ -1,0 +1,3 @@
+interface AnExampleService {
+    void display (in string text);
+};

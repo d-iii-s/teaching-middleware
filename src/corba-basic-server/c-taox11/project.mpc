@@ -1,0 +1,31 @@
+project(*idl): ridl_defaults, taox11_anytypecode {
+  IDL_Files {
+    example.idl
+  }
+  custom_only = 1
+}
+
+project(*server): taox11_server, taox11_anytypecode {
+  after += *idl
+  Source_Files {
+    server.cpp
+  }
+  Source_Files {
+    exampleS.cpp
+    exampleC.cpp
+  }
+  IDL_Files {
+  }
+}
+
+project(*client): taox11_client, taox11_anytypecode {
+  after += *idl
+  Source_Files {
+    client.cpp
+  }
+  Source_Files {
+    exampleC.cpp
+  }
+  IDL_Files {
+  }
+}

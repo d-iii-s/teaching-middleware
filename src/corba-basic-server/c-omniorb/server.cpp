@@ -6,8 +6,7 @@
 // The names of these files are not standardized,
 // so porting to another CORBA implementation
 // requires change here.
-#include <tao/corba.h>
-#include "exampleS.h"
+#include "example.hh"
 
 
 // Service implementation.
@@ -17,7 +16,7 @@
 class AnExampleServiceServant : public POA_AnExampleService {
 public:
     void display (const char *sText) {
-        std::cout << "TAO server: " << sText << std::endl;
+        std::cout << "omniORB server: " << sText << std::endl;
     };
 };
 
@@ -60,7 +59,6 @@ int main (int iArgC, char *apArgV []) {
         vORB->run ();
 
     } catch (const CORBA::SystemException &sEx) {
-        // Exception printing is not standardized.
-        std::cerr << sEx << std::endl;
+        std::cerr << sEx._name () << std::endl;
     };
 };

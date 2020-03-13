@@ -7,7 +7,7 @@ MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 CC = g++
 CC_OPTS = -g -Wall -Werror
 LD = g++
-LD_OPTS = -g -lACE -lTAO -lTAO_PortableServer -lTAO_AnyTypeCode
+LD_OPTS = -g -lomniORB4 -lomnithread
 
 # Files
 
@@ -16,7 +16,7 @@ ALL_OO = $(addsuffix .o, $(ALL_EX))
 ALL_DD = $(addsuffix .dep, $(ALL_EX))
 
 ALL_IF = example
-ALL_ST = $(addsuffix C.h, $(ALL_IF)) $(addsuffix C.inl, $(ALL_IF)) $(addsuffix C.cpp, $(ALL_IF)) $(addsuffix S.h, $(ALL_IF)) $(addsuffix S.cpp, $(ALL_IF))
+ALL_ST = $(addsuffix .hh, $(ALL_IF)) $(addsuffix SK.cc, $(ALL_IF))
 
 # Rules
 
@@ -29,21 +29,24 @@ clean:
 	rm -f $(ALL_ST)
 	rm -f $(ALL_EX)
 
-client: client.o exampleC.o
+client: client.o exampleSK.o
 	$(LD) $(LD_OPTS) -o $@ $^
 
-server: server.o exampleC.o exampleS.o
+server: server.o exampleSK.o
 	$(LD) $(LD_OPTS) -o $@ $^
 
-client.cpp: exampleC.h
+client.cpp: example.hh exampleSK.cc
 
-server.cpp: exampleS.h
+server.cpp: example.hh exampleSK.cc
 
 %.o: %.cpp
 	$(CC) $(CC_OPTS) -c -o $@ $<
 
-%C.h %C.inl %C.cpp %S.h %S.cpp: %.idl
-	tao_idl $<
+%.o: %.cc
+	$(CC) $(CC_OPTS) -c -o $@ $<
+
+%.hh %SK.cc: %.idl
+	omniidl -bcxx $<
 
 # Deps
 

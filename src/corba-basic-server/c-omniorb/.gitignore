@@ -1,0 +1,6 @@
+*.o
+*.dep
+client
+server
+example.hh
+exampleSK.cc

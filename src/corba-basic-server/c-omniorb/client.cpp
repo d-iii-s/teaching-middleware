@@ -7,8 +7,7 @@
 // The names of these files are not standardized,
 // so porting to another CORBA implementation
 // requires change here.
-#include <tao/corba.h>
-#include "exampleC.h"
+#include "example.hh"
 
 int main (int iArgC, char *apArgV []) {
     try {
@@ -34,7 +33,7 @@ int main (int iArgC, char *apArgV []) {
 
         // This is the actual remote call.
 
-        vService->display (CORBA::string_dup ("Hello from TAO client !"));
+        vService->display (CORBA::string_dup ("Hello from omniORB client !"));
 
         // Shut down the CORBA library.
 
@@ -42,6 +41,6 @@ int main (int iArgC, char *apArgV []) {
 
     } catch (const CORBA::SystemException &sEx) {
         // Exception printing is not standardized.
-        std::cerr << sEx << std::endl;
+        std::cerr << sEx.NP_minorString () << std::endl;
     };
 };

@@ -26,9 +26,9 @@ with grpc.insecure_channel (SERVER_ADDR) as channel:
     # Prepare the iterator that will send messages through the stream.
     def RequestIterator ():
         for i in range (8):
+            time.sleep (0.666)
             yield (message)
             continueSemaphore.acquire ()
-            time.sleep (0.666)
 
     # Call the service through the stub object.
     response_iterator = stub.EchoMessages (RequestIterator ())

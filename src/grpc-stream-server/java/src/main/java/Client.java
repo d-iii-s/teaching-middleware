@@ -53,9 +53,9 @@ public class Client {
 
             // Send messages through the stream.
             for (int i = 0 ; i < 8 ; i ++) {
+                try { Thread.sleep (666); } catch (InterruptedException e) { }
                 requestObserver.onNext (message);
                 continueSemaphore.acquire ();
-                try { Thread.sleep (666); } catch (InterruptedException e) { }
             }
 
             // Notify about the end of the stream.

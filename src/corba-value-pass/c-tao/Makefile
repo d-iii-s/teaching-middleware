@@ -23,6 +23,7 @@ ALL_ST = $(addsuffix C.h, $(ALL_IF)) $(addsuffix C.inl, $(ALL_IF)) $(addsuffix C
 all: $(ALL_EX)
 
 clean:
+	rm -f ior
 	rm -f *.o
 	rm -f *.dep
 	rm -f $(ALL_ST)

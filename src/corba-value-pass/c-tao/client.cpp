@@ -39,11 +39,11 @@ int main (int iArgC, char *apArgV []) {
         // Note use of setters for filling individual attributes.
 
         AValueBundle_var vBundle = new AValueBundleImpl ();        
-        vBundle->text (CORBA::string_dup ("Bundle from TAO client !"));
-        vBundle->number (0xDEAD);
-        
+        vBundle->text (CORBA::string_dup ("Hello from TAO client !"));
+        vBundle->number (12345);
+
         // This is a local call.
-        
+
         vBundle->display ();
 
         // This is a remote call.

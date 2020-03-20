@@ -18,10 +18,10 @@
 // The implementation inherits from a generated base class.
 
 class AnExampleServiceServant : public POA_AnExampleService {
-    public:
-        void display (AValueBundle *oBundle) {
-            oBundle->display ();
-        };
+public:
+    void display (AValueBundle *oBundle) {
+        oBundle->display ();
+    };
 };
 
 

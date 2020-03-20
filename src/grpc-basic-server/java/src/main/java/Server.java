@@ -15,6 +15,13 @@ public class Server {
         @Override
         public void cloneMessage (AnExampleMessage message, io.grpc.stub.StreamObserver<MoreExampleMessages> responseObserver) {
 
+            // Print the input.
+
+            System.out.println ("Server in Java cloning:");
+            System.out.println (message.toString ());
+
+            // Create the response by copying the request twice.
+
             MoreExampleMessages response = MoreExampleMessages.newBuilder ()
                 .addMessages (message)
                 .addMessages (message)

@@ -15,6 +15,8 @@ from example_pb2_grpc import *
 
 class MyServicer (AnExampleServiceServicer):
     def CloneMessage (self, request, context):
+        print ('Server in Python cloning:')
+        print (request)
         response = MoreExampleMessages ()
         response.messages.add ().CopyFrom (request)
         response.messages.add ().CopyFrom (request)

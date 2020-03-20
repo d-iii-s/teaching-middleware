@@ -18,8 +18,8 @@ public class Client {
         AnExampleServiceGrpc.AnExampleServiceBlockingStub stub = AnExampleServiceGrpc.newBlockingStub (channel);
 
         AnExampleMessage message = AnExampleMessage.newBuilder ()
-            .setSomeInteger (0xDEAD)
-            .setSomeString ("Hello gRPC !")
+            .setSomeInteger (12345)
+            .setSomeString ("Hello from gRPC in Java !")
             .build ();
         System.out.println ("Message:");
         System.out.println (message.toString ());

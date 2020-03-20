@@ -18,6 +18,7 @@ using namespace example;
 
 class MyService : public AnExampleService::Service {
     grpc::Status EchoMessages (grpc::ServerContext *context, grpc::ServerReaderWriter<AnExampleMessage, AnExampleMessage> *request_response) override {
+        std::cout << "Call." << std::endl;
         AnExampleMessage message;
         while (request_response->Read (&message)) {
             std::cout << "Request:" << std::endl;

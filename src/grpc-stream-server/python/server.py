@@ -15,6 +15,7 @@ from example_pb2_grpc import *
 
 class MyServicer (AnExampleServiceServicer):
     def EchoMessages (self, request_iterator, context):
+        print ('Call.')
         for message in request_iterator:
             print ('Request:')
             print (message)

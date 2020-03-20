@@ -13,6 +13,8 @@ public class Server {
 
         @Override
         public io.grpc.stub.StreamObserver<AnExampleMessage> echoMessages (final io.grpc.stub.StreamObserver<AnExampleMessage> responseObserver) {
+            System.out.println ("Call.");
+
             // Create and return an anonymous observer class that handles the request.
             return (new io.grpc.stub.StreamObserver<AnExampleMessage> () {
 

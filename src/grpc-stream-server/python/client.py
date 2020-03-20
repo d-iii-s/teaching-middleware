@@ -15,7 +15,7 @@ with grpc.insecure_channel (SERVER_ADDR) as channel:
     stub = AnExampleServiceStub (channel)
 
     message = AnExampleMessage ()
-    message.some_integer = 0xDEAD
+    message.some_integer = 12345
     message.some_string = 'Hello gRPC !'
     print ('Message:')
     print (message)

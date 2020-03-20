@@ -19,7 +19,7 @@ public class Client {
         AnExampleServiceGrpc.AnExampleServiceStub stub = AnExampleServiceGrpc.newStub (channel);
 
         AnExampleMessage message = AnExampleMessage.newBuilder ()
-            .setSomeInteger (0xDEAD)
+            .setSomeInteger (12345)
             .setSomeString ("Hello gRPC !")
             .build ();
         System.out.println ("Message:");

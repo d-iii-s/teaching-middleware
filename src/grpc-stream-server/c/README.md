@@ -1,9 +1,9 @@
-# gRPC Based Server
+# gRPC Based Stream Server
 
 ## Running the example
 
-```
-> make
-> ./server &
-> ./client
+```shell
+make
+./server &
+./client
 ```

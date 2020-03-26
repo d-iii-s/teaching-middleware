@@ -71,6 +71,12 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>shared-topic-consumer</id>
+                        <configuration>
+                            <mainClass>SharedTopicConsumer</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>verbose-topic-consumer</id>
                         <configuration>
                             <mainClass>VerboseTopicConsumer</mainClass>

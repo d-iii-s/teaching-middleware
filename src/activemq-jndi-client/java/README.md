@@ -14,3 +14,6 @@ Then, use separate windows to run producers and consumers.
 - Use `mvn exec:java@number-consumer` to launch consumer(s) for number content.
 
 Consult the `jndi.properties` file to see how the individual clients are connected.
+
+To prevent producers and consumers terminating on broker failure, use
+`mvn "-DBROKER_BIND_URL=failover:(tcp://localhost:61616)" ...`.

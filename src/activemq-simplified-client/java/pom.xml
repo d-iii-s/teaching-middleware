@@ -13,7 +13,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <activemq.version>5.15.12</activemq.version>
+        <activemq.version>2.11.0</activemq.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -21,23 +21,13 @@
         <!-- We need the ActiveMQ runtime libraries. -->
         <dependency>
             <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-all</artifactId>
+            <artifactId>artemis-jms-client</artifactId>
             <version>${activemq.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Broker execution from the build tool. -->
-            <plugin>
-                <groupId>org.apache.activemq.tooling</groupId>
-                <artifactId>activemq-maven-plugin</artifactId>
-                <version>${activemq.version}</version>
-                <configuration>
-                    <configUri>broker:(tcp://localhost:61616)</configUri>
-                </configuration>
-            </plugin>
-
             <!-- Optional execution from build tool. -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

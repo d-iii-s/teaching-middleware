@@ -1,4 +1,4 @@
-# ActiveMQ Based JMS Client
+# ActiveMQ Based JMS Client with Classic API
 
 ## Running the example
 
@@ -16,3 +16,6 @@ Then, use separate windows to run producers and consumers at your leisure.
 - Use `mvn exec:java@topic-consumer` to launch a consumer that prints text messages from a topic.
 - Use `mvn exec:java@verbose-topic-consumer` to launch a consumer that prints the messages with headers.
 - Use `mvn exec:java@durable-topic-consumer` to launch a consumer that gets the messages from durable storage.
+
+To prevent producers and consumers terminating on broker failure, use
+`mvn "-DBROKER_BIND_URL=failover:(tcp://localhost:61616)" ...`.

@@ -6,17 +6,11 @@ import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-public class TopicConsumer {
-    public static void main (String [] sArgs) {
+public class TextConsumer {
+    public static void main (String [] args) {
         try {
-            // Acquire broker connection factory.
-            //
-            // This code is ActiveMQ specific and therefore not portable.
-            // In a container environment, initial objects would be
-            // looked up through JNDI instead.
-            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory ();
-
             // Create and start a connection to the broker.
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory ();
             Connection connection = connectionFactory.createConnection ();
             connection.start ();
 
@@ -24,16 +18,11 @@ public class TopicConsumer {
             // Remember that multiple threads must not call one session simultaneously.
             Session session = connection.createSession (false, Session.AUTO_ACKNOWLEDGE);
 
-            // Connect to a hardcoded destination name.
-            //
-            // ActiveMQ does not need explicit destination configuration,
-            // the first client to use the destination name will cause
-            // the destination to be created, all other clients will
-            // simply connect to the same destination.
-            Destination topic = session.createTopic (Shared.TOPIC_NAME);
+            // Create message destination.
+            Destination destination = session.createTopic ("TextConsumerSource");
 
             // Keep receiving messages.
-            MessageConsumer consumer = session.createConsumer (topic);
+            MessageConsumer consumer = session.createConsumer (destination);
 
             while (true) {
                 TextMessage message = (TextMessage) consumer.receive ();

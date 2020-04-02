@@ -20,12 +20,14 @@ public class Consumer {
             KafkaConsumer <Integer, String> consumer = new KafkaConsumer <> (config);
 
             consumer.subscribe (Collections.singletonList (Shared.KAFKA_CONSUMER_TOPIC));
+
             while (true) {
                 ConsumerRecords <Integer, String> records = consumer.poll (Duration.ofDays (365));
                 for (ConsumerRecord <Integer, String> record : records) {
                     System.out.println (record.value ());
                 }
             }
+
         } catch (Exception e) {
             // In case something goes wrong.
             System.out.println (e);

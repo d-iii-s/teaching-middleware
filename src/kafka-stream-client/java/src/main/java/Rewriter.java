@@ -1,6 +1,7 @@
 import java.util.Properties;
 
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -15,7 +16,7 @@ public class Rewriter {
             config.put (StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, Shared.KAFKA_BOOTSTRAP_ADDRESS);
             config.put (StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Integer ().getClass ().getName ());
             config.put (StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String ().getClass ().getName ());
-            config.put (StreamsConfig.APPLICATION_ID_CONFIG, "Processor");
+            config.put (StreamsConfig.APPLICATION_ID_CONFIG, "Rewriter");
 
             StreamsBuilder builder = new StreamsBuilder ();
 
@@ -28,12 +29,18 @@ public class Rewriter {
                 // Produce the output topic.
                 .to (Shared.KAFKA_CONSUMER_TOPIC);
 
-            KafkaStreams processor = new KafkaStreams (builder.build (), config);
+            // Print the processor topology.
+            Topology topology = builder.build ();
+            System.out.println (topology.describe ());
 
+            // Execute the processor.
+            KafkaStreams processor = new KafkaStreams (topology, config);
             processor.start ();
 
-            // Just prevent the main thread from exitting.
-            while (true) Thread.sleep (1000);
+            // Prevent termination when executing from Maven.
+            synchronized (Thread.currentThread ()) {
+                Thread.currentThread ().wait ();
+            }
 
         } catch (Exception e) {
             // In case something goes wrong.

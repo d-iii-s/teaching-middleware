@@ -18,13 +18,15 @@ public class Monitor {
             config.put (ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, Shared.KAFKA_BOOTSTRAP_ADDRESS);
             config.put (ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName ());
             config.put (ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName ());
-            config.put (ConsumerConfig.GROUP_ID_CONFIG, "Consumer");
+            config.put (ConsumerConfig.GROUP_ID_CONFIG, "Monitor");
             KafkaConsumer <String, Long> consumer = new KafkaConsumer <> (config);
 
             Map <String, Long> table = new TreeMap <String, Long> ();
 
             consumer.subscribe (Collections.singletonList (Shared.KAFKA_COUNTS_TOPIC));
+
             while (true) {
+
                 ConsumerRecords <String, Long> records = consumer.poll (Duration.ofDays (365));
                 for (ConsumerRecord <String, Long> record : records) {
                     table.put (record.key (), record.value ());

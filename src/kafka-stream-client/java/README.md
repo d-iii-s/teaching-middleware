@@ -2,7 +2,7 @@
 
 ## Running the example
 
-The individual clients expect a Kafka server to be running on localhost.
+The individual clients expect a Kafka server to be running on `localhost`.
 First launch a ZooKeeper instance using the `zkServer.sh start` command.
 Then launch a Kafka instance using the `kafka-server-start.sh` command.
 

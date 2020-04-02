@@ -41,8 +41,10 @@ public class DataConsumer {
             // Create one time event subscription on the data node.
             zoo.exists (Shared.ZNODE_PATH, true);
 
-            // Just prevent the main thread from exitting.
-            while (true) Thread.sleep (1000);
+            // Prevent termination when executing from Maven.
+            synchronized (Thread.currentThread ()) {
+                Thread.currentThread ().wait ();
+            }
 
         } catch (Exception e) {
             // In case something goes wrong.

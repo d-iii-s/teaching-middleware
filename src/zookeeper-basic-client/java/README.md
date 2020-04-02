@@ -2,7 +2,7 @@
 
 ## Running the example
 
-The clients (producer and consumers) expect a ZooKeeper server to be running on localhost.
+The clients (producer and consumers) expect a ZooKeeper server to be running on `localhost`.
 Launch the server in a separate window using the `zkServer.sh start` command.
 
 Use `mvn compile` to compile the example.

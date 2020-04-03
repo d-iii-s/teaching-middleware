@@ -8,7 +8,7 @@ Create the broker configuration and run the broker:
 
 ```shell
 BROKER="$(mktemp --directory)"
-artemis create --user admin --password secret --allow-anonymous "${BROKER}"
+bin/artemis create --user admin --password secret --allow-anonymous "${BROKER}"
 "${BROKER}/bin/artemis" run
 ```
 
@@ -29,8 +29,8 @@ You can connect to the web console at `http://localhost:8161/console` to observe
 You can also use the command line to produce and consume messages:
 
 ```shell
-artemis producer --destination queue://ExampleQueue --message "Hello from Command Line Producer !" --message-count 8
-artemis producer --destination topic://ExampleTopic --message "Hello from Command Line Producer !" --message-count 8
+bin/artemis producer --destination queue://ExampleQueue --message "Hello from Command Line Producer !" --message-count 8
+bin/artemis producer --destination topic://ExampleTopic --message "Hello from Command Line Producer !" --message-count 8
 ```
 
 To prevent producers and consumers terminating on broker failure, use

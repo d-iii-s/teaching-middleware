@@ -27,21 +27,22 @@ public class Counter {
             builder
                 // Consume a stream from the input topic.
                 // Consumed helper used to inject types into the expression.
+                // Output: KStream (1: Foo, 2: Bar ...)
                 .stream (Shared.KAFKA_PRODUCER_TOPIC, Consumed.with (Serdes.Integer (), Serdes.String ()))
                 // Map each letter into value.
-                // The result type is KStream.
+                // Output: KStream (1: F, 1: o, 1: o, 2: B, 2: a, 2: r ...)
                 .flatMapValues (value -> value.chars ().mapToObj (code -> Character.toString ((char) code)).collect (Collectors.toList ()))
                 // Group records by values.
-                // The result type is KGroupedStream.
+                // Output: KGroupedStream (F: (F), o: (o, o), B: (B), a: (a), r: (r) ...)
                 .groupBy ((key, value) -> value, Grouped.with (Serdes.String (), Serdes.String ()))
                 // Count records in groups.
-                // The result type is KTable.
+                // Output: KTable (F: 1, o: 2, B: 1, a: 1, r: 1 ...) with default changelog granularity
                 .count ()
-                // Suppress frequent updates.
-                // The result type is KTable.
+                // Aggregate updates.
+                // Output: KTable (F: 1, o: 2, B: 1, a: 1, r: 1 ...) with updated changelog granularity
                 .suppress (Suppressed.untilTimeLimit (Duration.ofSeconds (11), Suppressed.BufferConfig.unbounded ()))
-                // Stream remaining updates.
-                // The result type is KStream.
+                // Stream aggregated updates.
+                // Output: KStream (F: 1, o: 2, B: 1, a: 1, r: 1 ...)
                 .toStream ()
                 // Produce the counts topic.
                 .to (Shared.KAFKA_COUNTS_TOPIC, Produced.with (Serdes.String (), Serdes.Long ()));

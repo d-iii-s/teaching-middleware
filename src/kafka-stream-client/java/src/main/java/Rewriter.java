@@ -23,8 +23,10 @@ public class Rewriter {
             builder
                 // Consume a stream from the input topic.
                 // Consumed helper used to inject types into the expression.
+                // Output: KStream (1: Foo, 2: Bar ...)
                 .stream (Shared.KAFKA_PRODUCER_TOPIC, Consumed.with (Serdes.Integer (), Serdes.String ()))
                 // Map each value into revese value.
+                // Output: KStream (1: ooF, 2: raB ...)
                 .mapValues (value -> new StringBuilder (value).reverse ().toString ())
                 // Produce the output topic.
                 .to (Shared.KAFKA_CONSUMER_TOPIC);

@@ -12,7 +12,8 @@ mvn exec:java@client
 
 Add `grpc-services` to the dependencies in `pom.xml`.
 Add `io.grpc.protobuf.services.ProtoReflectionService.newInstance ()` to the server builder invocation.
-This enables server reflection, which permits inspecting the API from the clients, using for example command line tools.
+This enables server reflection, which permits inspecting the API from the clients,
+using for example the command line tools.
 
 ```shell
 grpc_cli ls localhost:8888

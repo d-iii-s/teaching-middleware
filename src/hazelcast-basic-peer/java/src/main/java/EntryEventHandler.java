@@ -1,7 +1,7 @@
-import com.hazelcast.core.MapEvent;
 import com.hazelcast.core.EntryEvent;
 import com.hazelcast.core.EntryListener;
 
+import com.hazelcast.map.MapEvent;
 import com.hazelcast.map.impl.DataAwareEntryEvent;
 
 public class EntryEventHandler implements EntryListener {
@@ -30,6 +30,11 @@ public class EntryEventHandler implements EntryListener {
     public void entryEvicted (EntryEvent event) {
         DataAwareEntryEvent data = (DataAwareEntryEvent) event;
         System.out.println ("- " + scope + " entry " + data.getKey () + ":" + data.getValue () + " evicted.");
+    }
+
+    public void entryExpired (EntryEvent event) {
+        DataAwareEntryEvent data = (DataAwareEntryEvent) event;
+        System.out.println ("- " + scope + " entry " + data.getKey () + ":" + data.getValue () + " expired.");
     }
 
     public void mapCleared (MapEvent event) {

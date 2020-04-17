@@ -22,7 +22,7 @@ int main () {
 
         zmq::message_t message;
 
-        subscriber.recv (&message);
+        subscriber.recv (message, zmq::recv_flags::none);
         printf ("Message: %s\n", (char *) message.data ());
 
         // Note the message is deallocated here.

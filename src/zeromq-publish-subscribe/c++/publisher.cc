@@ -23,7 +23,7 @@ int main () {
         zmq::message_t message ((void *) greeting, strlen (greeting) + 1, NULL);
 
         // Just send to all connected subscribers.
-        publisher.send (message);
+        publisher.send (message, zmq::send_flags::none);
 
         sleep (1);
 

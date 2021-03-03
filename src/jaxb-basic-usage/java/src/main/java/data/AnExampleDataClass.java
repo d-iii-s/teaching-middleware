@@ -17,7 +17,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
  *
  * Contains various field types to illustrate the mapping.
  */
-@XmlType (namespace = "http://example.com/namespace")
 @XmlRootElement
 public class AnExampleDataClass {
 

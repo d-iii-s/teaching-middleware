@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
  * Contains various field types to illustrate the mapping.
  */
 @XmlRootElement
+@XmlType (propOrder = {})
 public class AnExampleDataClass {
 
     @XmlElement

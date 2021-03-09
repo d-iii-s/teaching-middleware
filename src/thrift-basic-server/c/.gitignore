@@ -1,0 +1,6 @@
+# Compilation dependencies.
+*.o
+*.dep
+
+# Generated files.
+gen-cpp

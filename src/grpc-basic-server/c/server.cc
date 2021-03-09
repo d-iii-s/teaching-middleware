@@ -29,8 +29,8 @@ class MyService : public AnExampleService::Service {
 };
 
 
-int main ()
-{
+int main () {
+
     // Create the server object.
     //
     // The server object represents the server runtime.

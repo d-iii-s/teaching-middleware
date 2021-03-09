@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import grpc
 
 from shared import *
@@ -13,7 +15,7 @@ with grpc.insecure_channel (SERVER_ADDR) as channel:
     stub = AnExampleServiceStub (channel)
 
     message = AnExampleMessage ()
-    message.some_integer = 12345
+    message.some_integer = 0xDEAD
     message.some_string = 'Hello from gRPC in Python !'
     print ('Message:')
     print (message)

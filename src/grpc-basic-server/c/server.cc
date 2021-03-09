@@ -18,15 +18,12 @@ class MyService : public AnExampleService::Service {
     grpc::Status CloneMessage (grpc::ServerContext *context, const AnExampleMessage *request, MoreExampleMessages *response) override {
 
         // Print the input.
-
-        std::cout << "Server in C++ cloning:" << std::endl;
+        std::cout << "gRPC server in C++ cloning:" << std::endl;
         std::cout << request->DebugString () << std::endl;
 
         // Create the response by copying the request twice.
-
         response->add_messages ()->CopyFrom (*request);
         response->add_messages ()->CopyFrom (*request);
-
         return (grpc::Status::OK);
     }
 };

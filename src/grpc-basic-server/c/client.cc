@@ -19,7 +19,7 @@ int main ()
     std::shared_ptr<AnExampleService::Stub> stub = AnExampleService::NewStub (channel);
 
     AnExampleMessage message;
-    message.set_some_integer (12345);
+    message.set_some_integer (0xDEAD);
     message.set_some_string ("Hello from gRPC in C++ !");
     std::cout << "Message:" << std::endl;
     std::cout << message.DebugString () << std::endl;

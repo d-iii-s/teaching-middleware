@@ -1,11 +1,11 @@
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
-public class ExampleClient {
+public class Client {
     public static void main (String args []) {
         try {
             Registry registry = LocateRegistry.getRegistry ();
-            Example object = (Example) registry.lookup ("ExampleServer");
+            Example object = (Example) registry.lookup (Shared.SERVER_NAME);
             object.printString ("Hello RMI !");
         }
         catch (Exception e) {

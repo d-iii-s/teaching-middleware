@@ -27,13 +27,13 @@
                     <execution>
                         <id>server</id>
                         <configuration>
-                            <mainClass>ExampleServer</mainClass>
+                            <mainClass>Server</mainClass>
                         </configuration>
                     </execution>
                     <execution>
                         <id>client</id>
                         <configuration>
-                            <mainClass>ExampleClient</mainClass>
+                            <mainClass>Client</mainClass>
                         </configuration>
                     </execution>
                 </executions>

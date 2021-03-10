@@ -1,7 +1,7 @@
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 
-public class ExampleServer {
+public class Server {
 
     private static final int REGISTRY_DEFAULT_PORT = 1099;
 
@@ -12,7 +12,7 @@ public class ExampleServer {
 
             // Register the object with a well known name.
             Registry registry = LocateRegistry.createRegistry (REGISTRY_DEFAULT_PORT);
-            registry.bind ("ExampleServer", object);
+            registry.bind (Shared.SERVER_NAME, object);
 
             // Prevent termination when executing from Maven.
             synchronized (Thread.currentThread ()) {

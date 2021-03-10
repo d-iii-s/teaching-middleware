@@ -4,15 +4,15 @@
 
 First, generate the stub code together with example client and example server.
 
-```
-> rpcgen -a example.x
+```shell
+rpcgen -a example.x
 ```
 
 Next, edit the example client and example server.
 
 In `example_client.c`, modify the code to include a string argument:
 
-```
+```c
 void
 print_1(char *host)
 {
@@ -24,7 +24,7 @@ print_1(char *host)
 
 In `example_server.c`, modify the code to print the string argument:
 
-```
+```c
 #include <stdio.h>
 
 void *
@@ -34,14 +34,13 @@ print_str_1_svc(char **argp, struct svc_req *rqstp)
     puts (*argp);
     return (void *) &result;
 }
-
 ```
 
 Finally, build and run the client and the server.
 Remember that the `rpcbind` service must also be running.
 
-```
-> CFLAGS="-I/usr/include/tirpc" LDFLAGS="-ltirpc" make -f Makefile.example
-> ./example_server &
-> ./example_client localhost
+```shell
+CFLAGS="-I/usr/include/tirpc" LDFLAGS="-ltirpc" make -f Makefile.example
+./example_server &
+./example_client localhost
 ```

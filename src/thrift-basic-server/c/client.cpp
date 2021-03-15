@@ -17,11 +17,11 @@ int main ()
     // Create the object stack used to connect to the server.
     std::shared_ptr<TTransport> socket (new TSocket (SERVER_ADDR, SERVER_PORT));
     std::shared_ptr<TTransport> transport (new TBufferedTransport (socket));
-    std::shared_ptr<TProtocol> protocol (new TBinaryProtocol(transport));
-    ExampleClient client (protocol);
+    std::shared_ptr<TProtocol> protocol (new TBinaryProtocol (transport));
+    std::shared_ptr<ExampleClient> client (new ExampleClient (protocol));
 
     transport->open ();
-    client.printString ("Hello from Thrift in C++ !");
+    client->printString ("Hello from Thrift in C++ !");
     transport->close ();
 
     return (0);

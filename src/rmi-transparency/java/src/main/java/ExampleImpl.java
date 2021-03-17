@@ -24,4 +24,9 @@ public class ExampleImpl extends UnicastRemoteObject implements Example {
         System.out.println ("- reference equality says " + (proxyOne == proxyTwo));
         System.out.println ("- content equality says " + (proxyOne.equals (proxyTwo)));
     }
+    public void proxy (String message, Example proxy) {
+        System.out.println (message);
+        System.out.println ("- reference equality says " + (this == proxy));
+        System.out.println ("- content equality says " + (this.equals (proxy)));
+    }
 }

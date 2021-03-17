@@ -7,4 +7,5 @@ public interface Example extends Remote {
     void twoLists (String message, List listOne, List listTwo) throws RemoteException;
     void listAndElement (String message, List list, Object element) throws RemoteException;
     void twoProxies (String message, Example proxyOne, Example proxyTwo) throws RemoteException;
+    void proxy (String message, Example proxy) throws RemoteException;
 }

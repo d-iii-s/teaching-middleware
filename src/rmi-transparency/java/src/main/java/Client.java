@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Client {
     public static void main (String args []) {
         try {
+
             Registry registry = LocateRegistry.getRegistry ();
             Example object = (Example) registry.lookup (Shared.SERVER_NAME);
 
@@ -51,6 +52,13 @@ public class Client {
             System.out.println ("- content equality says " + (proxyOne.equals (proxyTwo)));
             object.twoProxies ("Sending one proxy twice ...", proxyOne, proxyOne);
             object.twoProxies ("Sending two different proxies ...", proxyOne, proxyTwo);
+
+            System.out.println ("Press ENTER to continue.");
+            System.in.read ();
+
+            // See how the proxy compares with the remote object.
+            object.proxy ("This proxy ...", object);
+
         }
         catch (Exception e) {
             System.out.println ("Exception:");

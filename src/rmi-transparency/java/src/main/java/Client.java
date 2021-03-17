@@ -13,6 +13,7 @@ public class Client {
             String stringOne = "string one";
             String stringTwo = "string two";
             object.twoStrings ("Sending one string twice ...", stringOne, stringOne);
+            object.twoStrings ("Sending two equal strings ...", new String (stringOne), new String (stringOne));
             object.twoStrings ("Sending two different strings ...", stringOne, stringTwo);
             object.twoStrings ("Sending two equal string literals ...", "a string", "a string");
 

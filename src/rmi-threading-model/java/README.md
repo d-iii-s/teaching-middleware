@@ -1,4 +1,4 @@
-# Java RMI Based Server
+# Java RMI Threading Model Experiments
 
 The example performs various simple calls that demonstrate the properties of the RMI threading model.
 

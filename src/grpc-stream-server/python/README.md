@@ -3,10 +3,10 @@
 ## Running the example
 
 ```shell
-python -m venv .
-. bin/activate
-pip install protobuf grpcio
-protoc --plugin=protoc-gen-grpc=$(pkg-config --variable=prefix grpc++)/bin/grpc_python_plugin --python_out="." --grpc_out="." example.proto
-python server.py &
-python client.py
+python -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+python -m grpc.tools.protoc --python_out="." --grpc_python_out="." --proto_path="." example.proto
+./server.py &
+./client.py
 ```

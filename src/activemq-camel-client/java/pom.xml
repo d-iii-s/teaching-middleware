@@ -7,14 +7,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>d3s</groupId>
-    <artifactId>activemq-jndi-client</artifactId>
+    <artifactId>activemq-camel-client</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <activemq.version>5.15.12</activemq.version>
-        <camel.version>3.1.0</camel.version>
+        <jakarta.jaxb.version>2.3.3</jakarta.jaxb.version>
+        <activemq.version>5.16.1</activemq.version>
+        <camel.version>3.8.0</camel.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -38,10 +39,23 @@
                     <configUri>xbean:file:src/main/conf/activemq.xml</configUri>
                 </configuration>
                 <dependencies>
+                    <!-- Example needs the Camel runtime components. -->
                     <dependency>
                         <groupId>org.apache.camel</groupId>
                         <artifactId>camel-activemq</artifactId>
                         <version>${camel.version}</version>
+                    </dependency>
+                    <!-- Broker needs the Jakarta JAXB libraries. -->
+                    <dependency>
+                        <groupId>jakarta.xml.bind</groupId>
+                        <artifactId>jakarta.xml.bind-api</artifactId>
+                        <version>${jakarta.jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>${jakarta.jaxb.version}</version>
+                        <scope>runtime</scope>
                     </dependency>
                 </dependencies>
             </plugin>

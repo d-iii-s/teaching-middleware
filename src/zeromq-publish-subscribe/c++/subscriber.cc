@@ -16,7 +16,7 @@ int main () {
 
     // Set an accept-all filter on the subscription.
     // The default filter is discard-all.
-    subscriber.setsockopt (ZMQ_SUBSCRIBE, NULL, 0);
+    subscriber.set (zmq::sockopt::subscribe, "");
 
     while (true) {
 

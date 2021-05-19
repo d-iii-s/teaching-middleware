@@ -1,0 +1,4 @@
+*.o
+*.dep
+broadcast
+scan

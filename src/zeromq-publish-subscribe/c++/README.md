@@ -2,8 +2,8 @@
 
 ## Running the example
 
-```
-> make
-> ./publisher &
-> ./subscriber
+```shell
+make
+./publisher &
+./subscriber
 ```

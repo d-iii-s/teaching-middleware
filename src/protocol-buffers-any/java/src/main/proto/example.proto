@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+package example;
+
+message AnExampleMessage {
+    uint32 some_integer = 1;
+    sint32 another_integer = 2;
+    string some_string = 8;
+    repeated string some_more_strings = 11;
+}
+
+message MoreExampleMessages {
+    google.protobuf.Any something = 1;
+}

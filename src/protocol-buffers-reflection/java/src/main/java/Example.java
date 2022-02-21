@@ -1,5 +1,7 @@
-import com.google.protobuf.Any;
 import com.google.protobuf.Message;
+import com.google.protobuf.Descriptors.Descriptor;
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import example.Example.AnExampleMessage;
 import example.Example.MoreExampleMessages;
@@ -48,37 +50,20 @@ public class Example {
 
     public static void main (String [] args) {
 
-        // Create message instance.
+        // Fill two out of three fields and show what the serialized message looks like.
+        Descriptor messageDescriptor = AnExampleMessage.getDescriptor ();
+        FieldDescriptor someIntegerFieldDescriptor = messageDescriptor.findFieldByName ("some_integer");
+        FieldDescriptor someStringFieldDescriptor = messageDescriptor.findFieldByName ("some_string");
         AnExampleMessage message = AnExampleMessage.newBuilder ()
-            .setSomeInteger (0xDEAD)
-            .setAnotherInteger (0xBEEF)
-            .setSomeString ("Hello Protocol Buffers !")
+            .setField (someIntegerFieldDescriptor, 0xDEAD)
+            .setField (someStringFieldDescriptor, "Hello Protocol Buffers !")
             .build ();
-        System.out.println ("Message:");
+        System.out.println ("Message with one integer field and one string field:");
         dumpMessage (message);
         System.out.println ();
 
-        // Message instance with an empty any.
-        MoreExampleMessages messages_one = MoreExampleMessages.newBuilder ()
-            .build ();
-        System.out.println ("Message with an empty any:");
-        dumpMessage (messages_one);
-        System.out.println ();
-
         // We can also debug dump a message.
         System.out.println ("Debug dump:");
-        System.out.println (messages_one.toString ());
-
-        // Message instance with another message in any.
-        MoreExampleMessages messages_two = MoreExampleMessages.newBuilder ()
-            .setSomething (Any.pack (message))
-            .build ();
-        System.out.println ("Message with an other message in any:");
-        dumpMessage (messages_two);
-        System.out.println ();
-
-        // We can also debug dump a message.
-        System.out.println ("Debug dump:");
-        System.out.println (messages_two.toString ());
+        System.out.println (message.toString ());
     }
 }

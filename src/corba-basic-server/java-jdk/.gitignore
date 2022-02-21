@@ -1,2 +1,6 @@
-ior
+.project
+.settings
+.classpath
 target
+
+ior

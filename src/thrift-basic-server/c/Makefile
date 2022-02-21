@@ -20,7 +20,7 @@ ALL_DD = $(addsuffix .dep, $(ALL_EX))
 ONE_TF = example
 ONE_TC = Example
 ONE_TG = gen-cpp
-ONE_TH = $(addprefix $(ONE_TG)/, $(ONE_TF)_constants.cpp $(ONE_TF)_constants.h $(ONE_TF)_types.cpp $(ONE_TF)_types.h $(ONE_TC).cpp $(ONE_TC).h)
+ONE_TH = $(addprefix $(ONE_TG)/, $(ONE_TF)_types.h $(ONE_TC).cpp $(ONE_TC).h)
 
 # Rules
 
@@ -33,15 +33,15 @@ clean:
 	rm -d $(ONE_TG)
 	rm -f $(ALL_EX)
 
-client: client.o example_constants.o example_types.o Example.o
+client: client.o Example.o
 	$(LD) $^ $(LD_OPTS) -o $@
 
-server: server.o example_constants.o example_types.o Example.o
+server: server.o Example.o
 	$(LD) $^ $(LD_OPTS) -o $@
 
-client.cpp: $(addprefix $(ONE_TG)/, example_constants.h example_types.h Example.h)
+client.cpp: $(addprefix $(ONE_TG)/, example_types.h Example.h)
 
-server.cpp: $(addprefix $(ONE_TG)/, example_constants.h example_types.h Example.h)
+server.cpp: $(addprefix $(ONE_TG)/, example_types.h Example.h)
 
 %.o: %.cpp
 	$(CC) $(CC_OPTS) -c -o $@ $<

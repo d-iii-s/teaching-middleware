@@ -1,0 +1,5 @@
+.venv
+.ipynb*
+poetry.lock
+
+compression.csv

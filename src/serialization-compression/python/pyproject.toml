@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "serialization-compression"
+version = "0"
+description = ""
+authors = ["Petr Tuma <petr.tuma@d3s.mff.cuni.cz>"]
+
+[tool.poetry.dependencies]
+python = "~3.10"
+jupyterlab = "^3.2.9"
+pandas = "^1.4.1"
+seaborn = "^0.11.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

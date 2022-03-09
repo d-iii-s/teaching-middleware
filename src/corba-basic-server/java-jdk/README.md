@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Last tested with OpenJDK 1.8.0-242 on Fedora 31.
+The CORBA implementation was deprecated in Java SE 9 and removed in Java SE 11.
 
 ## Running the example
 

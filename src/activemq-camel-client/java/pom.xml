@@ -13,9 +13,9 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jakarta.jaxb.version>2.3.3</jakarta.jaxb.version>
-        <activemq.version>5.16.1</activemq.version>
-        <camel.version>3.8.0</camel.version>
+        <jakarta.jaxb.version>4.0.0</jakarta.jaxb.version>
+        <activemq.version>5.16.4</activemq.version>
+        <camel.version>3.15.0</camel.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

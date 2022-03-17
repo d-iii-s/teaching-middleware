@@ -1,4 +1,4 @@
-# ActiveMQ Based JMS Client With Camel
+# ActiveMQ Based JMS Client with Camel
 
 ## Running the example
 
@@ -37,3 +37,8 @@ This will make the text content also go to the `target/temporary` directory of t
     <to uri="activemq:queue:SplitterSource?jmsMessageType=Text"/>
 </route>
 ```
+
+## Standalone integration server
+
+For instructions on how to run Camel as a standalone integration server,
+see [the Camel examples repository](https://github.com/apache/camel-examples).

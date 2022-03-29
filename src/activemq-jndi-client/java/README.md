@@ -1,4 +1,4 @@
-# ActiveMQ Based JMS Client With JNDI
+# ActiveMQ Based JMS Client with JNDI
 
 ## Running the example
 

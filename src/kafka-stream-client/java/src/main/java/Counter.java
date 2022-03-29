@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.nio.file.Files;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,12 @@ public class Counter {
             config.put (StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Integer ().getClass ().getName ());
             config.put (StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String ().getClass ().getName ());
             config.put (StreamsConfig.APPLICATION_ID_CONFIG, "Counter");
+
+            // Disable output record cache to avoid compacting the changelog records.
+            config.put (StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+
+            // Use unique state directory to permit demonstrating multiple instances locally.
+            config.put (StreamsConfig.STATE_DIR_CONFIG, Files.createTempDirectory (null).toString ());
 
             StreamsBuilder builder = new StreamsBuilder ();
 

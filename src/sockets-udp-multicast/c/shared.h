@@ -10,6 +10,9 @@
 #define FALSE 0
 #define TRUE !0
 
+// The default multicast TTL is 1,
+// so almost any address is safe here.
+
 #define GROUP_ADDR "239.255.255.88"
 #define GROUP_PORT 8888
 

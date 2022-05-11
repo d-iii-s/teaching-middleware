@@ -15,7 +15,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <osgi.core.version>8.0.0</osgi.core.version>
-        <felix.jetty.version>4.2.0</felix.jetty.version>
+        <osgi.http.version>1.2.2</osgi.http.version>
+        <servlet.api.version>2.5</servlet.api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -26,11 +27,17 @@
             <artifactId>osgi.core</artifactId>
             <version>${osgi.core.version}</version>
         </dependency>
-        <!-- We need the Felix HTTP service. -->
+        <!-- We need the OSGi HTTP interfaces. -->
         <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.http.jetty</artifactId>
-            <version>${felix.jetty.version}</version>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.http</artifactId>
+            <version>${osgi.http.version}</version>
+        </dependency>
+        <!-- We need the servlet interface. -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.api.version}</version>
         </dependency>
     </dependencies>
 

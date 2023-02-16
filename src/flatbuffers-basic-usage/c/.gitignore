@@ -1,0 +1,4 @@
+*.o
+*.dep
+*_generated.h
+example

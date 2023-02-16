@@ -1,0 +1,53 @@
+namespace SomeNamespace;
+
+enum SomeEnum: int { One = 1, Two, Three }
+
+struct SomeStructure {
+
+    // Basic integer types.
+    a_byte: byte;
+    a_short: short;
+    an_int: int;
+    a_long: long;
+    an_unsigned_short: ushort;
+    an_unsigned_int: uint;
+    an_unsigned_long: ulong;
+
+    // Basic float types.
+    a_float: float;
+    a_double: double;
+
+    // Array field only supported in structures.
+    an_int_array: [int: 123];
+}
+
+table SomeTable {
+
+    // Optional fields.
+    a_byte: byte;
+    an_int: int;
+    a_string: string;
+
+    // Required field of non basic types.
+    a_required_string: string (required);
+    a_required_enum_arrays: [SomeEnum] (required);
+}
+
+table AnotherTable {
+
+    // Explicitly specified field identifiers.
+    // Must form continuous range from 0.
+    // Must be specified everywhere.
+    an_int: int (id: 2);
+    a_long: long (id: 0);
+    a_string: string (id: 1);
+
+    // Fields with default values.
+    a_float: float = 0.0 (id: 3);
+}
+
+// Union types only for tables.
+union SomeUnion { SomeTable, AnotherTable }
+
+// Root type must be table.
+root_type SomeTable;

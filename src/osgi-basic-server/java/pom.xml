@@ -53,6 +53,7 @@
                     <instructions>
                         <Export-Package>example</Export-Package>
                         <Bundle-Activator>example.ActivatorImpl</Bundle-Activator>
+                        <Require-Capability>osgi.contract;filter:="(&(osgi.contract=JavaServlet)(version=4.0))"</Require-Capability>
                     </instructions>
                 </configuration>
             </plugin>

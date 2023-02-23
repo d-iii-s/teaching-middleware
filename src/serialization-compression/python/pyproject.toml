@@ -5,10 +5,10 @@ description = ""
 authors = ["Petr Tuma <petr.tuma@d3s.mff.cuni.cz>"]
 
 [tool.poetry.dependencies]
-python = "~3.10"
-jupyterlab = "^3.2.9"
-pandas = "^1.4.1"
-seaborn = "^0.11.2"
+python = "^3.10"
+jupyterlab = "^3.6.1"
+pandas = "^1.5.3"
+seaborn = "^0.12.2"
 
 [tool.poetry.dev-dependencies]
 

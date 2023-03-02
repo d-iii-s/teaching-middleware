@@ -1,8 +1,10 @@
 #include <iostream>
 
 #include <grpc++/grpc++.h>
+
 // To make the API calls easily visible, the example does not use the grpc namespace.
 // A standard application would likely be "using namespace grpc" here.
+// For similar reasons, the use of auto type deduction is avoided.
 
 #include "shared.h"
 

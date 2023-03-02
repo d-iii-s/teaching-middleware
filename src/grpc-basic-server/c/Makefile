@@ -9,7 +9,7 @@ PC_OPTS = --plugin=protoc-gen-grpc=$(shell pkg-config --variable=prefix grpc++)/
 CC = g++
 CC_OPTS = -std=c++11 $(shell pkg-config --cflags protobuf grpc++) -Wall -Wextra -Wno-unused-parameter -Werror
 LD = g++
-LD_OPTS = -std=c++11 $(shell pkg-config --libs protobuf grpc++)
+LD_OPTS = -std=c++11 $(shell pkg-config --libs protobuf grpc++) -lgrpc++_reflection
 
 # Files
 

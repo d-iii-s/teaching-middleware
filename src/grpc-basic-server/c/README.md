@@ -14,8 +14,8 @@ Launch with `GRPC_VERBOSITY=info` and `GRPC_TRACE=all` to enable logging.
 
 ## Inspecting server API
 
-Add `-lgrpc++_reflection` to `LD_OPTS` in `Makefile` and build again.
-This enables server reflection, which permits inspecting the API,
+The example is compiled with server reflection support.
+Server reflection permits inspecting the API,
 using for example command line tools.
 
 ```shell

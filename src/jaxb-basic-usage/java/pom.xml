@@ -13,7 +13,8 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jakarta.jaxb.version>2.3.3</jakarta.jaxb.version>
+        <jakarta.jaxb.binding.version>4.0.0</jakarta.jaxb.binding.version>
+        <jakarta.jaxb.runtime.version>4.0.1</jakarta.jaxb.runtime.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -22,12 +23,12 @@
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>${jakarta.jaxb.version}</version>
+            <version>${jakarta.jaxb.binding.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>${jakarta.jaxb.version}</version>
+            <version>${jakarta.jaxb.runtime.version}</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>

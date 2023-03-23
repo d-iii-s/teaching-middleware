@@ -24,7 +24,7 @@ public class Counter {
             config.put (StreamsConfig.APPLICATION_ID_CONFIG, "Counter");
 
             // Disable output record cache to avoid compacting the changelog records.
-            config.put (StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+            config.put (StreamsConfig.STATESTORE_CACHE_MAX_BYTES_CONFIG, 0);
 
             // Use unique state directory to permit demonstrating multiple instances locally.
             config.put (StreamsConfig.STATE_DIR_CONFIG, Files.createTempDirectory (null).toString ());

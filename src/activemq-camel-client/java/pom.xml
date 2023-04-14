@@ -17,7 +17,7 @@
         <!-- ActiveMQ 5.16.6 is the last version to integrate the Camel ActiveMQ plugin.
              ActiveMQ 5.17.0 expects developers to use the Camel ActiveMQ plugin from
              Camel itself, but dependency hell lies that way. -->
-        <camel.version>2.25.4</camel.version> <!-- Set to match ActiveMQ Camel dependency. -->
+        <camel.version>3.2.0</camel.version> <!-- Set to match ActiveMQ Camel dependency. -->
         <spring.version>4.3.30.RELEASE</spring.version> <!-- Set to match ActiveMQ Spring dependency. -->
         <activemq.version>5.16.6</activemq.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

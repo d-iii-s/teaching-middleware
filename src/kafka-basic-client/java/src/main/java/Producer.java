@@ -34,7 +34,8 @@ public class Producer {
 
                     // Publish occasional messages to the topic.
                     // The record has no key and no partition identifier.
-                    // Kafka will select the partition using round robin.
+                    // Kafka will use the default partitioning logic in that case.
+                    // Depending on the platform, this may be round robin or sticky.
                     ProducerRecord<String, String> record = new ProducerRecord <> (
                         Shared.KAFKA_TOPIC,
                         line);

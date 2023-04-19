@@ -12,8 +12,9 @@ int main () {
     void *publisher = zmq_socket (context, ZMQ_PUB);
 
     // Multiple transports can be used with a socket.
-    // zmq_bind (publisher, "ipc://example");
     zmq_bind (publisher, "tcp://*:8888");
+    // zmq_bind (publisher, "ipc://example");
+    // zmq_bind (publisher, "pgm://127.0.0.1;239.255.255.88:8888");
 
     while (true) {
 

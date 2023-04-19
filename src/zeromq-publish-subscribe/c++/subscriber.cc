@@ -11,8 +11,10 @@ int main () {
     zmq::socket_t subscriber (context, ZMQ_SUB);
 
     // Connect to one of the available transports.
-    // subscriber.connect ("ipc://example");
+    // Uncomment as needed to evaluate transport.
     subscriber.connect ("tcp://localhost:8888");
+    // subscriber.connect ("ipc://example");
+    // subscriber.connect ("pgm://127.0.0.1;239.255.255.88:8888");
 
     // Set an accept-all filter on the subscription.
     // The default filter is discard-all.

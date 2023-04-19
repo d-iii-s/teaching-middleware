@@ -12,8 +12,9 @@ int main () {
     void *subscriber = zmq_socket (context, ZMQ_SUB);
 
     // Connect to one of the available transports.
-    // zmq_connect (subscriber, "ipc://example");
     zmq_connect (subscriber, "tcp://localhost:8888");
+    // zmq_connect (subscriber, "ipc://example");
+    // zmq_connect (subscriber, "pgm://127.0.0.1;239.255.255.88:8888");
 
     // Set an accept-all filter on the subscription.
     // The default filter is discard-all.

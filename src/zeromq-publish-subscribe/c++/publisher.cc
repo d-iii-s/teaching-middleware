@@ -11,8 +11,10 @@ int main () {
     zmq::socket_t publisher (context, ZMQ_PUB);
 
     // Multiple transports can be used with a socket.
-    // publisher.bind ("ipc://example");
+    // Uncomment as needed to evaluate transport.
     publisher.bind ("tcp://*:8888");
+    // publisher.bind ("ipc://example");
+    // publisher.bind ("pgm://127.0.0.1;239.255.255.88:8888");
 
     while (true) {
 

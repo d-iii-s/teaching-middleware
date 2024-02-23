@@ -7,9 +7,9 @@ MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 FC = flatc
 FC_OPTS =
 CC = g++
-CC_OPTS = -std=c++11 -O0 -g $(shell pkg-config --cflags flatbuffers) -Wall -Wextra -Wno-unused-parameter -Werror
+CC_OPTS = -std=c++20 -O0 -g $(shell pkg-config --cflags flatbuffers) -Wall -Wextra -Wno-unused-parameter -Werror
 LD = g++
-LD_OPTS = -std=c++11 -O0 -g $(shell pkg-config --libs flatbuffers)
+LD_OPTS = -std=c++20 -O0 -g $(shell pkg-config --libs flatbuffers)
 
 # Files
 

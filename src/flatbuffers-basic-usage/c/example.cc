@@ -61,19 +61,55 @@ void dump_buffer_builder (const flatbuffers::FlatBufferBuilder &builder) {
 int main (void) {
 
     // Show what a serialized empty table looks like.
-    flatbuffers::FlatBufferBuilder empty_another_table_builder;
-    auto empty_another_table = CreateAnotherTable (empty_another_table_builder);
-    empty_another_table_builder.Finish (empty_another_table);
+    flatbuffers::FlatBufferBuilder empty_table_generic_builder;
+    auto empty_another_table = CreateAnotherTable (empty_table_generic_builder);
+    empty_table_generic_builder.Finish (empty_another_table);
     std::cout << "Empty table:" << std::endl;
-    dump_buffer_builder (empty_another_table_builder);
+    dump_buffer_builder (empty_table_generic_builder);
     std::cout << std::endl;
 
     // Fill three out of four fields and show what the serialized table looks like.
     // Constructor argument order follows table field key order.
-    flatbuffers::FlatBufferBuilder some_another_table_builder;
-    auto some_another_table = CreateAnotherTableDirect (some_another_table_builder, 0x1234, "Hello FlatBuffers !", 0x12345678);
-    some_another_table_builder.Finish (some_another_table);
+    flatbuffers::FlatBufferBuilder another_table_generic_builder;
+    auto some_another_table = CreateAnotherTableDirect (another_table_generic_builder, 0x1234, "Hello FlatBuffers !", 0x12345678);
+    another_table_generic_builder.Finish (some_another_table);
     std::cout << "Table with two integer fields and one string field:" << std::endl;
-    dump_buffer_builder (some_another_table_builder);
+    dump_buffer_builder (another_table_generic_builder);
     std::cout << std::endl;
+
+    // Use typed builder to fill some fields and show what the serialized table looks like.
+    flatbuffers::FlatBufferBuilder yet_another_table_generic_builder;
+    AnotherTableBuilder yet_another_table_typed_builder (yet_another_table_generic_builder);
+    yet_another_table_typed_builder.add_a_float (1.2345678);
+    yet_another_table_typed_builder.add_a_long (0x12345678);
+    auto yet_another_table = yet_another_table_typed_builder.Finish ();
+    yet_another_table_generic_builder.Finish (yet_another_table);
+    std::cout << "Table with one integer field and one float field:" << std::endl;
+    dump_buffer_builder (yet_another_table_generic_builder);
+    std::cout << std::endl;
+
+    // Show what a serialized union looks like.
+    flatbuffers::FlatBufferBuilder root_table_builder;
+    auto some_string = root_table_builder.CreateString ("Twice !");
+    int32_t some_enum_array [] { SomeEnum::SomeEnum_One };
+    auto some_enum_vector = root_table_builder.CreateVector (some_enum_array, 1);
+    auto some_table = CreateSomeTable (root_table_builder, 0x55, 0x55AA, some_string, some_string, some_enum_vector);
+    auto root_table = CreateRootTable (root_table_builder, SomeUnion_SomeTable, some_table.Union ());
+    root_table_builder.Finish (root_table);
+    std::cout << "Table with union:" << std::endl;
+    dump_buffer_builder (root_table_builder);
+    std::cout << std::endl;
+
+    // Decode earlier buffer instance.
+    uint8_t *buffer = root_table_builder.GetBufferPointer ();
+    auto decoded_root_table = GetRootTable (buffer);
+    std::cout << "Decoded buffer:" << std::endl;
+    if (decoded_root_table->content_type () == SomeUnion::SomeUnion_SomeTable) {
+        auto decoded_some_table = static_cast<const SomeTable *> (decoded_root_table->content ());
+        std::cout << decoded_some_table->a_byte () <<
+            " - " << decoded_some_table->an_int () <<
+            " - " << decoded_some_table->a_string ()->str () <<
+            std::endl <<
+            std::endl;
+    }
 }

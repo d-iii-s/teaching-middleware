@@ -30,7 +30,7 @@ table SomeTable {
 
     // Required field of non basic types.
     a_required_string: string (required);
-    a_required_enum_arrays: [SomeEnum] (required);
+    a_required_enum_array: [SomeEnum] (required);
 }
 
 table AnotherTable {
@@ -49,5 +49,9 @@ table AnotherTable {
 // Union types only for tables.
 union SomeUnion { SomeTable, AnotherTable }
 
+table RootTable {
+    content: SomeUnion;
+}
+
 // Root type must be table.
-root_type SomeTable;
+root_type RootTable;

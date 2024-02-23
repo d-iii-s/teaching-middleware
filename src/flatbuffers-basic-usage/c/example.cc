@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include <string>
 #include <iomanip>
 #include <iostream>
@@ -102,6 +104,9 @@ int main (void) {
 
     // Decode earlier buffer instance.
     uint8_t *buffer = root_table_builder.GetBufferPointer ();
+    int size = root_table_builder.GetSize ();
+    auto verifier = flatbuffers::Verifier (buffer, size);
+    assert (VerifyRootTableBuffer (verifier));
     auto decoded_root_table = GetRootTable (buffer);
     std::cout << "Decoded buffer:" << std::endl;
     if (decoded_root_table->content_type () == SomeUnion::SomeUnion_SomeTable) {

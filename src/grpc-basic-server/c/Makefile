@@ -7,9 +7,9 @@ MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 PC = $(shell pkg-config --variable=prefix protobuf)/bin/protoc
 PC_OPTS = --plugin=protoc-gen-grpc=$(shell pkg-config --variable=prefix grpc++)/bin/grpc_cpp_plugin
 CC = g++
-CC_OPTS = -std=c++11 $(shell pkg-config --cflags protobuf grpc++) -Wall -Wextra -Wno-unused-parameter -Werror
+CC_OPTS = -std=c++20 $(shell pkg-config --cflags protobuf grpc++) -Wall -Wextra -Wno-unused-parameter -Werror
 LD = g++
-LD_OPTS = -std=c++11 $(shell pkg-config --libs protobuf grpc++) -lgrpc++_reflection
+LD_OPTS = -std=c++20 $(shell pkg-config --libs protobuf grpc++) -lgrpc++_reflection
 
 # Files
 

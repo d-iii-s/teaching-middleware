@@ -1,1 +1,1 @@
-thrift >= 0.15
+thrift >= 0.16

@@ -26,14 +26,14 @@ with grpc.insecure_channel (SERVER_ADDR) as channel:
     continueSemaphore = threading.Semaphore (0)
 
     # Prepare the iterator that will send messages through the stream.
-    def RequestIterator ():
+    def RequestGenerator ():
         for i in range (8):
             time.sleep (0.666)
             yield (message)
             continueSemaphore.acquire ()
 
     # Call the service through the stub object.
-    response_iterator = stub.EchoMessages (RequestIterator ())
+    response_iterator = stub.EchoMessages (RequestGenerator ())
     for response in response_iterator:
         print ('Response:')
         print (response)

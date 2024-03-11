@@ -6,10 +6,10 @@
 // A standard application would likely be "using namespace grpc" here.
 // For similar reasons, the use of auto type deduction is avoided.
 
-#include "shared.h"
-
 #include "example.grpc.pb.h"
 using namespace example;
+
+#include "shared.h"
 
 
 int main ()

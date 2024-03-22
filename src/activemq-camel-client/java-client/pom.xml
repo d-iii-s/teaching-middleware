@@ -11,19 +11,24 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <jakarta.jaxb.version>2.3.3</jakarta.jaxb.version>
-        <!-- ActiveMQ 5.16.6 is the last version to integrate the Camel ActiveMQ plugin.
-             ActiveMQ 5.17.0 expects developers to use the Camel ActiveMQ plugin from
-             Camel itself, but dependency hell lies that way. -->
-        <camel.version>2.25.4</camel.version> <!-- Set to match ActiveMQ Camel dependency. -->
-        <spring.version>4.3.30.RELEASE</spring.version> <!-- Set to match ActiveMQ Spring dependency. -->
-        <activemq.version>5.16.6</activemq.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <slf4j.version>2.0.11</slf4j.version>
+        <activemq.version>6.1.0</activemq.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+       <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
         <!-- We need the ActiveMQ runtime libraries. -->
         <dependency>
             <groupId>org.apache.activemq</groupId>
@@ -40,33 +45,8 @@
                 <artifactId>activemq-maven-plugin</artifactId>
                 <version>${activemq.version}</version>
                 <configuration>
-                    <configUri>xbean:file:src/main/conf/activemq.xml</configUri>
+                    <configUri>broker:(tcp://localhost:61616)</configUri>
                 </configuration>
-                <dependencies>
-                    <!-- Example needs the Camel runtime components. -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-aop</artifactId>
-                        <version>${spring.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.apache.camel</groupId>
-                        <artifactId>camel-core</artifactId>
-                        <version>${camel.version}</version>
-                    </dependency>
-                    <!-- Broker needs the Jakarta JAXB libraries. -->
-                    <dependency>
-                        <groupId>jakarta.xml.bind</groupId>
-                        <artifactId>jakarta.xml.bind-api</artifactId>
-                        <version>${jakarta.jaxb.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.sun.xml.bind</groupId>
-                        <artifactId>jaxb-impl</artifactId>
-                        <version>${jakarta.jaxb.version}</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
             </plugin>
 
             <!-- Optional execution from build tool. -->

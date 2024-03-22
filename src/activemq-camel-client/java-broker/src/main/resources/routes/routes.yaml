@@ -1,0 +1,21 @@
+- route:
+    id: "producer-splitter"
+    from:
+        uri: "activemq:queue:InitialProducerTarget"
+        steps:
+        - to:
+            uri: "activemq:queue:SplitterSource"
+- route:
+    id: "splitter-text"
+    from:
+        uri: "activemq:topic:SplitterTargetText"
+        steps:
+        - to:
+            uri: "activemq:topic:TextConsumerSource"
+- route:
+    id: "splitter-number"
+    from:
+        uri: "activemq:queue:SplitterTargetNumber"
+        steps:
+        - to:
+            uri: "activemq:queue:NumberConsumerSource"

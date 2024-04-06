@@ -18,7 +18,8 @@ BS="--bootstrap-server localhost:9092"
 
 # Receive records (with keys).
 bin/kafka-console-consumer.sh ${BS} --topic SomeTopic
-bin/kafka-console-consumer.sh ${BS} --topic SomeTopic --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer --property print.key=true
+bin/kafka-console-consumer.sh ${BS} --topic SomeTopic  --property print.key=true \
+    --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer
 
 # Receive records starting with specific position.
 bin/kafka-console-consumer.sh ${BS} --topic SomeTopic --from-beginning

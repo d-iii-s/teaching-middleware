@@ -28,14 +28,14 @@ public class Producer {
                 "The frumious Bandersnatch!"
             };
 
-            int counter = 0;
+            int key = 0;
 
             while (true) {
                 for (String line : poem) {
-                    ProducerRecord<Integer, String> record = new ProducerRecord <> (Shared.KAFKA_PRODUCER_TOPIC, counter, line);
+                    ProducerRecord<Integer, String> record = new ProducerRecord <> (Shared.KAFKA_PRODUCER_TOPIC, key, line);
                     producer.send (record);
                     Thread.sleep (1000);
-                    counter ++;
+                    key ++;
                 }
             }
 

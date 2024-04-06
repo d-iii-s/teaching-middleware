@@ -2,6 +2,7 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.Collections;
 
+import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -13,10 +14,10 @@ public class Consumer {
         try {
             Properties config = new Properties ();
             config.put (ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, Shared.KAFKA_BOOTSTRAP_ADDRESS);
-            config.put (ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName ());
+            config.put (ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class.getName ());
             config.put (ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName ());
             config.put (ConsumerConfig.GROUP_ID_CONFIG, "BasicConsumer");
-            KafkaConsumer <String, String> consumer = new KafkaConsumer <> (config);
+            KafkaConsumer <Integer, String> consumer = new KafkaConsumer <> (config);
 
             // Subscribe to the topic.
             // Kafka will connect the consumer to a subset of partitions
@@ -26,8 +27,8 @@ public class Consumer {
             while (true) {
                 // Consume messages from the topic.
                 // Kafka will use the default auto commit settings.
-                ConsumerRecords <String, String> records = consumer.poll (Duration.ofDays (365));
-                for (ConsumerRecord <String, String> record : records) {
+                ConsumerRecords <Integer, String> records = consumer.poll (Duration.ofDays (365));
+                for (ConsumerRecord <Integer, String> record : records) {
                     System.out.println (record);
                 }
             }

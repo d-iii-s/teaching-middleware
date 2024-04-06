@@ -13,11 +13,21 @@ Then, use separate windows to run producers and consumers at your leisure.
 
 The Kafka cluster can also be explored using the command line interface.
 
-Use `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic SomeTopic` to receive messages.
-Use `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic SomeTopic --from-beginning` to receive messages including those from history.
-Use `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic SomeTopic --partition 0 --offset 0` to receive messages from specified partition and offset.
+```shell
+BS="--bootstrap-server localhost:9092"
 
-Use `bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic SomeTopic --describe` to inspect a topic.
-Use `bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic SomeTopic --alter --partitions 8` to increase the number of partitions.
+# Receive records (with keys).
+bin/kafka-console-consumer.sh ${BS} --topic SomeTopic
+bin/kafka-console-consumer.sh ${BS} --topic SomeTopic --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer --property print.key=true
 
-Use `bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group BasicConsumer --describe` to inspect a consumer group.
+# Receive records starting with specific position.
+bin/kafka-console-consumer.sh ${BS} --topic SomeTopic --from-beginning
+bin/kafka-console-consumer.sh ${BS} --topic SomeTopic --partition 0 --offset 0
+
+# Alter partition count.
+bin/kafka-topics.sh ${BS} --topic SomeTopic --describe
+bin/kafka-topics.sh ${BS} --topic SomeTopic --alter --partitions 8
+
+# Inspect consumer group.
+bin/kafka-consumer-groups.sh ${BS} --group BasicConsumer --describe
+```

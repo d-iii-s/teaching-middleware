@@ -1,6 +1,7 @@
 import java.util.Properties;
 import java.util.concurrent.Future;
 
+import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -13,10 +14,10 @@ public class Producer {
         try {
             Properties config = new Properties ();
             config.put (ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, Shared.KAFKA_BOOTSTRAP_ADDRESS);
-            config.put (ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName ());
+            config.put (ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class.getName ());
             config.put (ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName ());
             config.put (ProducerConfig.CLIENT_ID_CONFIG, "BasicProducer");
-            KafkaProducer <String, String> producer = new KafkaProducer <> (config);
+            KafkaProducer <Integer, String> producer = new KafkaProducer <> (config);
 
             String [] poem = {
                 "Twas brillig, and the slithy toves",
@@ -29,16 +30,17 @@ public class Producer {
                 "The frumious Bandersnatch!"
             };
 
+            // Arbitrary record key to avoid sticky partitioner using only one partition.
+            int key = 0;
+
             while (true) {
                 for (String line : poem) {
 
                     // Publish occasional messages to the topic.
                     // The record has no key and no partition identifier.
-                    // Kafka will use the default partitioning logic in that case.
-                    // Depending on the platform, this may be round robin or sticky.
-                    ProducerRecord<String, String> record = new ProducerRecord <> (
+                    ProducerRecord<Integer, String> record = new ProducerRecord <> (
                         Shared.KAFKA_TOPIC,
-                        line);
+                        key, line);
 
                     // Send is non blocking.
                     // Wait happens when waiting on the future object.
@@ -46,6 +48,8 @@ public class Producer {
                     System.out.println (result.get ());
 
                     Thread.sleep ((int) Math.random () * 10000 + 5000);
+
+                    key ++;
                 }
             }
 

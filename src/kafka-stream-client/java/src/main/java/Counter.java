@@ -40,6 +40,7 @@ public class Counter {
                 // Output: KStream (1: F, 1: o, 1: o, 2: B, 2: a, 2: r ...)
                 .flatMapValues (value -> value.chars ().mapToObj (code -> Character.toString ((char) code)).collect (Collectors.toList ()))
                 // Group records by values.
+                // This creates intermediate representation before subsequent aggregation.
                 // Output: KGroupedStream (F: (F), o: (o, o), B: (B), a: (a), r: (r) ...)
                 .groupBy ((key, value) -> value, Grouped.with (Serdes.String (), Serdes.String ()))
                 // Count records in groups.

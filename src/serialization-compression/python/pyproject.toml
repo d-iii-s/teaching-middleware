@@ -1,14 +1,12 @@
 [tool.poetry]
-name = "serialization-compression"
-version = "0"
-description = ""
-authors = ["Petr Tuma <petr.tuma@d3s.mff.cuni.cz>"]
+description = ''
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.10"
-jupyterlab = "^3.6.1"
-pandas = "^1.5.3"
-seaborn = "^0.12.2"
+python = "^3.13"
+jupyterlab = "^4.3.5"
+pandas = "^2.2.3"
+seaborn = "^0.13.2"
 
 [tool.poetry.dev-dependencies]
 

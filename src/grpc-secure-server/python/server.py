@@ -39,7 +39,12 @@ key_data = open ('server.key', 'rb').read ()
 crt_data = open ('server.crt', 'rb').read ()
 credentials = grpc.ssl_server_credentials ([( key_data, crt_data )])
 
-server = grpc.server (futures.ThreadPoolExecutor (max_workers = SERVER_THREAD_COUNT))
+server = grpc.server (
+    # The server uses a thread pool to execute the invoked methods.
+    futures.ThreadPoolExecutor (max_workers = SERVER_THREAD_COUNT),
+    # Throw in compression just to show it is supported.
+    compression = grpc.Compression.Gzip)
+
 add_AnExampleServiceServicer_to_server (MyServicer (), server)
 server.add_secure_port (SERVER_ADDR, credentials)
 server.start ()

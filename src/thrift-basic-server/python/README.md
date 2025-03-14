@@ -2,6 +2,8 @@
 
 ## Running the example
 
+Make sure the `thrift` package version in `requirements.txt` matches the local installation of the interface compiler.
+
 ```shell
 python -m venv .venv
 . .venv/bin/activate

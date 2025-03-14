@@ -16,14 +16,16 @@ using namespace example;
 // The implementation uses generic callback service base class.
 
 class MyServiceReactor : public ServerGenericBidiReactor {
+
     ByteBuffer request;
     ByteBuffer response;
 
-    public:
-        MyServiceReactor () {
-            // Initiate read operation, content ready in OnReadDone.
-            StartRead (&request);
-        }
+public:
+
+    MyServiceReactor () {
+        // Initiate read operation, content ready in OnReadDone.
+        StartRead (&request);
+    }
 
     void OnReadDone (bool ok) override {
         if (ok) {

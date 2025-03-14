@@ -1,6 +1,6 @@
 protobuf >= 4.25
-grpcio >= 1.61
-grpcio-tools >= 1.61
+grpcio >= 1.71
+grpcio-tools >= 1.71
 opentelemetry-sdk >= 1.30
 opentelemetry-instrumentation-grpc >= 0.50
 opentelemetry-exporter-otlp-proto-grpc >= 1.30

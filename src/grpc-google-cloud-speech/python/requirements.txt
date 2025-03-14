@@ -1,4 +1,4 @@
-requests >= 2.31
-protobuf >= 4.25
-grpcio >= 1.61
-google-auth >= 2.28.1
+requests >= 2.32
+protobuf >= 6.30
+grpcio >= 1.71
+google-auth >= 2.38

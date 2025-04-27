@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
-            <version>5.3.7</version>
+            <version>5.5.0</version>
         </dependency>
     </dependencies>
 
@@ -32,9 +32,26 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
-                <configuration>
-                    <mainClass>Peer</mainClass>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>node</id>
+                        <configuration>
+                            <mainClass>Node</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>batch</id>
+                        <configuration>
+                            <mainClass>BatchSource</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stream</id>
+                        <configuration>
+                            <mainClass>StreamSource</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

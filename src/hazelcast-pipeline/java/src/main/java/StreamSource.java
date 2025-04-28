@@ -5,7 +5,7 @@ import com.hazelcast.jet.pipeline.Pipeline;
 import com.hazelcast.jet.pipeline.Sinks;
 import com.hazelcast.jet.pipeline.test.TestSources;
 
-public class Peer {
+public class StreamSource {
 
     public static void main (String [] arguments) {
         try {

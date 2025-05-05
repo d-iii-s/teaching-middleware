@@ -15,5 +15,6 @@ Simulated packet loss can be used
 to evaluate transport behavior.
 
 ```shell
+modprobe sch_netem
 tc qdisc add dev lo root netem loss 33%
 ```

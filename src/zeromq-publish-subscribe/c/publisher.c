@@ -1,6 +1,8 @@
 #include <unistd.h>
 #include <stdbool.h>
 
+// Extra include needed for deprecated signal API.
+#include <bits/types/sigset_t.h>
 #include <zmq.h>
 
 int main () {

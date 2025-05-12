@@ -13,7 +13,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <zookeeper.version>3.9.2</zookeeper.version>
+        <zookeeper.version>3.9.3</zookeeper.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -35,13 +35,13 @@
                 <version>1.6.0</version>
                 <executions>
                     <execution>
-                        <id>data-producer</id>
+                        <id>producer</id>
                         <configuration>
                             <mainClass>DataProducer</mainClass>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>data-consumer</id>
+                        <id>consumer</id>
                         <configuration>
                             <mainClass>DataConsumer</mainClass>
                         </configuration>

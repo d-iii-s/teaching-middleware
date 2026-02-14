@@ -1,0 +1,32 @@
+{
+  "type" : "record",
+  "name" : "MoreExampleMessages",
+  "namespace" : "example",
+  "fields" : [ {
+    "name" : "messages",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "AnExampleMessage",
+        "fields" : [ {
+          "name" : "some_integer",
+          "type" : "int"
+        }, {
+          "name" : "another_integer",
+          "type" : [ "null", "int" ],
+          "default" : null
+        }, {
+          "name" : "some_string",
+          "type" : "string"
+        }, {
+          "name" : "some_more_strings",
+          "type" : {
+            "type" : "array",
+            "items" : "string"
+          }
+        } ]
+      }
+    }
+  } ]
+}

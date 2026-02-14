@@ -1,0 +1,16 @@
+// The protocol definition is only used here to group multiple types.
+// Standard protocol definition usage assumes remote procedure call context.
+@namespace ("example")
+protocol AnExampleProtocol {
+
+	record AnExampleMessage {
+		int some_integer;
+		int? another_integer = null;
+		string some_string;
+		array<string> some_more_strings;
+	}
+
+	record MoreExampleMessages {
+		array<AnExampleMessage> messages;
+	}
+}

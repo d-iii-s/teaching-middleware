@@ -1,0 +1,11 @@
+[project]
+name = 'avro-basic-usage'
+version = '0.0.0'
+requires-python = '>= 3.10'
+
+dependencies = [
+    'avro >= 1.12.1',
+]
+
+[tool.uv]
+package = false

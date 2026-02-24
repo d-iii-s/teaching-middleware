@@ -3,10 +3,7 @@
 ## Running the example
 
 ```shell
-python -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
-python -m grpc.tools.protoc --python_out="." --grpc_python_out="." --proto_path="." example.proto
+uv run python -m grpc.tools.protoc --python_out="." --grpc_python_out="." --proto_path="." example.proto
 ./server.py &
 ./client.py
 ```

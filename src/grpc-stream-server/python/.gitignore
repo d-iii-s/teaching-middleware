@@ -1,3 +1,6 @@
+# Package manager data.
+uv.lock
+
 # Python compilation cache.
 __pycache__
 

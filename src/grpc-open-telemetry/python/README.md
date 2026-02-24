@@ -10,10 +10,7 @@ user interface is available at `http://localhost:16686`.
 As an alternative to Jaeger, a console exporter can be enabled in the `client.py` and `server.py` files.
 
 ```shell
-python -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
-python -m grpc.tools.protoc --python_out="." --grpc_python_out="." --proto_path="." example.proto
+uv run python -m grpc.tools.protoc --python_out="." --grpc_python_out="." --proto_path="." example.proto
 ./server.py &
 ./client.py
 ```

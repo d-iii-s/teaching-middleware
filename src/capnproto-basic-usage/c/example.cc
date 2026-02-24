@@ -115,6 +115,6 @@ int main (void) {
 
     // We can also debug dump a message.
     std::cout << "Debug dump:" << std::endl;
-    capnp::prettyPrint (messages);
-    std::cout << std::endl;
+    auto dump = capnp::prettyPrint (parsed_messages);
+    std::cout << dump.flatten ().cStr () << std::endl;
 }

@@ -1,0 +1,5 @@
+*.o
+*.dep
+example
+example.capnp.h
+example.capnp.c++

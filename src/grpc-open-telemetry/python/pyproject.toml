@@ -5,8 +5,8 @@ requires-python = '>= 3.10'
 
 dependencies = [
     'protobuf >= 4.25',
-    'grpcio >= 1.78.1',
-    'grpcio-tools >= 1.78.1',
+    'grpcio >= 1.78.0',
+    'grpcio-tools >= 1.78.0',
     'opentelemetry-sdk >= 1.30',
     'opentelemetry-instrumentation-grpc >= 0.52b0',
     'opentelemetry-exporter-otlp-proto-grpc >= 1.30',

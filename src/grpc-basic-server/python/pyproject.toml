@@ -5,8 +5,8 @@ requires-python = '>= 3.10'
 
 dependencies = [
     'protobuf >= 4.25',
-    'grpcio >= 1.78.1',
-    'grpcio-tools >= 1.78.1',
+    'grpcio >= 1.78',
+    'grpcio-tools >= 1.78',
 ]
 
 [tool.uv]

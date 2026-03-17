@@ -14,9 +14,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <slf4j.version>2.0.17</slf4j.version>
-        <camel.version>4.4.1</camel.version>
-        <activemq.version>6.1.6</activemq.version>
-        <messaginghub.version>3.1.5</messaginghub.version>
+        <camel.version>4.18.0</camel.version>
+        <activemq.version>6.2.1</activemq.version>
+        <messaginghub.version>3.2.2</messaginghub.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

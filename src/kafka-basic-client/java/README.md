@@ -18,7 +18,7 @@ BS="--bootstrap-server localhost:9092"
 
 # Receive records (with keys).
 bin/kafka-console-consumer.sh ${BS} --topic SomeTopic
-bin/kafka-console-consumer.sh ${BS} --topic SomeTopic  --property print.key=true \
+bin/kafka-console-consumer.sh ${BS} --topic SomeTopic  --formatter-property print.key=true \
     --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer
 
 # Receive records starting with specific position.
@@ -32,3 +32,7 @@ bin/kafka-topics.sh ${BS} --topic SomeTopic --alter --partitions 8
 # Inspect consumer group.
 bin/kafka-consumer-groups.sh ${BS} --group BasicConsumer --describe
 ```
+
+Metadata is cached on clients for at most `metadata.max.age.ms` milliseconds,
+the default is 300000 milliseconds or 5 minutes. This governs how soon
+the clients perceive partition count changes.

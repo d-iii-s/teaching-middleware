@@ -26,13 +26,13 @@ bin/kafka-topics.sh ${BS} --topic ProducerTopic --describe
 bin/kafka-topics.sh ${BS} --topic ProducerTopic --alter --partitions=8
 
 # Observing producer and consumer records.
-bin/kafka-console-consumer.sh ${BS} --topic ProducerTopic --property print.key=true \
+bin/kafka-console-consumer.sh ${BS} --topic ProducerTopic --formatter-property print.key=true \
     --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer
-bin/kafka-console-consumer.sh ${BS} --topic ConsumerTopic --property print.key=true \
+bin/kafka-console-consumer.sh ${BS} --topic ConsumerTopic --formatter-property print.key=true \
     --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer
 
 # Observing count table update records.
-bin/kafka-console-consumer.sh ${BS} --topic CountsTopic --property print.key=true \
+bin/kafka-console-consumer.sh ${BS} --topic CountsTopic --formatter-property print.key=true \
     --value-deserializer org.apache.kafka.common.serialization.LongDeserializer
 
 # Observing internal stream topic created for grouping.
@@ -45,12 +45,12 @@ bin/kafka-console-consumer.sh ${BS} --topic Counter-KSTREAM-AGGREGATE-STATE-STOR
 
 # Observing internal stream topic created for counting.
 bin/kafka-console-consumer.sh ${BS} --topic Counter-KSTREAM-AGGREGATE-STATE-STORE-0000000003-changelog \
-    --property print.key=true --value-deserializer org.apache.kafka.common.serialization.LongDeserializer
+    --formatter-property print.key=true --value-deserializer org.apache.kafka.common.serialization.LongDeserializer
 bin/kafka-console-consumer.sh ${BS} --topic Counter-KSTREAM-AGGREGATE-STATE-STORE-0000000003-changelog \
-    --property print.key=true --value-deserializer org.apache.kafka.common.serialization.LongDeserializer \
+    --formatter-property print.key=true --value-deserializer org.apache.kafka.common.serialization.LongDeserializer \
     --partition 0
 bin/kafka-console-consumer.sh ${BS} --topic Counter-KSTREAM-AGGREGATE-STATE-STORE-0000000003-changelog \
-    --property print.key=true --value-deserializer org.apache.kafka.common.serialization.LongDeserializer \
+    --formatter-property print.key=true --value-deserializer org.apache.kafka.common.serialization.LongDeserializer \
     --partition 1
 
 # Observing consumer groups.

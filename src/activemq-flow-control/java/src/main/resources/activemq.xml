@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+    <amq:broker brokerName="localhost" persistent="false">
+        <amq:transportConnectors>
+            <amq:transportConnector name="openwire" uri="tcp://localhost:61616"/>
+        </amq:transportConnectors>
+
+        <amq:systemUsage>
+            <amq:systemUsage sendFailIfNoSpace="false" sendFailIfNoSpaceAfterTimeout="0">
+                <amq:memoryUsage>
+                    <amq:memoryUsage limit="1 gb"/>
+                </amq:memoryUsage>
+                <amq:storeUsage>
+                    <amq:storeUsage limit="8 gb"/>
+                </amq:storeUsage>
+                <amq:tempUsage>
+                    <amq:tempUsage limit="2 gb"/>
+                </amq:tempUsage>
+            </amq:systemUsage>
+        </amq:systemUsage>
+
+        <amq:destinationPolicy>
+            <amq:policyMap>
+                <amq:policyEntries>
+                    <amq:policyEntry queue=">"
+                                     producerFlowControl="true"
+                                     cursorMemoryHighWaterMark="70"
+                                     storeUsageHighWaterMark="100"
+                                     queuePrefetch="1000"/>
+                    <amq:policyEntry topic=">"
+                                     producerFlowControl="true"
+                                     cursorMemoryHighWaterMark="70"
+                                     storeUsageHighWaterMark="100"
+                                     topicPrefetch="32767"/>
+                </amq:policyEntries>
+            </amq:policyMap>
+        </amq:destinationPolicy>
+    </amq:broker>
+</beans>

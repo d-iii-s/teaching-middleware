@@ -1,13 +1,13 @@
-# Package manager data.
+# Package manager data
 uv.lock
 
-# Python compilation cache.
+# Python compilation cache
 __pycache__
 
-# Python virtual environment.
+# Python virtual environment
 .venv
 
-# Generated files.
+# Generated files
 server.crt
 server.key
 example_pb2.py

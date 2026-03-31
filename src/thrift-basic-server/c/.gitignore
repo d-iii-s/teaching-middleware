@@ -1,10 +1,10 @@
-# Compilation dependencies.
+# Compilation dependencies
 *.o
 *.dep
 
-# Executable files.
+# Executable files
 client
 server
 
-# Generated files.
+# Generated files
 gen-cpp

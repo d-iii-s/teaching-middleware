@@ -1,8 +1,8 @@
 # Caches
 /.angular
 
-# Node packages.
+# Node packages
 /node_modules
 
-# Generated files.
+# Generated files
 /src/app/backend

@@ -1,11 +1,11 @@
-# Python compilation cache.
+# Python compilation cache
 __pycache__
 
-# Python virtual environment.
+# Python virtual environment
 .venv
 
-# Generated files.
+# Generated files
 google
 
-# Additional repositories.
+# Additional repositories
 googleapis

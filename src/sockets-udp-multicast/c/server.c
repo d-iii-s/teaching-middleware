@@ -23,7 +23,7 @@ int main ()
     //
     // Note the need to use network order inside address fields.
 
-    struct sockaddr_in server_address;
+    struct sockaddr_in server_address = {0};
     server_address.sin_family = AF_INET;
     server_address.sin_addr.s_addr = htonl (INADDR_ANY);
     server_address.sin_port = htons (GROUP_PORT);
@@ -43,7 +43,7 @@ int main ()
     //
     // The IP_ADD_MEMBERSHIP option directs the kernel to join the given multicast group.
 
-    struct ip_mreqn multicast_membership;
+    struct ip_mreqn multicast_membership = {0};
     multicast_membership.imr_multiaddr = group_address;
     multicast_membership.imr_address.s_addr = htonl (INADDR_ANY);
     multicast_membership.imr_ifindex = 0;

@@ -23,7 +23,7 @@ int main ()
     //
     // Note the need to use network order inside address fields.
 
-    struct sockaddr_in server_address;
+    struct sockaddr_in server_address = {0};
     server_address.sin_family = AF_INET;
     server_address.sin_addr.s_addr = htonl (INADDR_ANY);
     server_address.sin_port = htons (SERVER_PORT);
@@ -48,7 +48,7 @@ int main ()
 
         printf ("Waiting for incoming connection.\n");
 
-        struct sockaddr_in client_address;
+        struct sockaddr_in client_address = {0};
         socklen_t client_address_size = sizeof (client_address);
         int client_socket = accept (server_socket, (struct sockaddr *) &client_address, &client_address_size);
         ASSERT (client_socket >= 0, "Failed to accept incoming connection.");

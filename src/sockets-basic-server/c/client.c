@@ -14,9 +14,9 @@ int main ()
     //
     // Note the need to use network order inside address fields.
 
-    struct sockaddr_in server_address;
+    struct sockaddr_in server_address = {0};
     server_address.sin_family = AF_INET;
-    int aton_status = inet_aton (SERVER_ADDR, (in_addr *) &server_address.sin_addr.s_addr);
+    int aton_status = inet_aton (SERVER_ADDR, &server_address.sin_addr);
     ASSERT (aton_status == 1, "Failed to parse server address.");
     server_address.sin_port = htons (SERVER_PORT);
 
@@ -31,7 +31,7 @@ int main ()
     // We assume that the response is a zero terminated string.
 
     const char *message = "Hello !";
-    ssize_t message_size = strlen (message);
+    ssize_t message_size = strlen (message) + 1;
     ssize_t write_size = write (client_socket, message, message_size);
     ASSERT (write_size == message_size, "Failed to write to outgoing connection.");
 

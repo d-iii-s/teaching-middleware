@@ -4,7 +4,7 @@
 
 MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 
-CC = g++
+CC = gcc
 CC_OPTS = -O0 -g -Wall -Wextra -Werror
 
 # Files

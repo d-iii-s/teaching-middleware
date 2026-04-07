@@ -14,9 +14,9 @@ int main ()
     //
     // Note the need to use network order inside address fields.
 
-    struct sockaddr_in group_address;
+    struct sockaddr_in group_address = {0};
     group_address.sin_family = AF_INET;
-    int aton_status = inet_aton (GROUP_ADDR, (in_addr *) &group_address.sin_addr.s_addr);
+    int aton_status = inet_aton (GROUP_ADDR, &group_address.sin_addr);
     ASSERT (aton_status == 1, "Failed to parse group address.");
     group_address.sin_port = htons (GROUP_PORT);
 
@@ -30,7 +30,7 @@ int main ()
     // Just send something.
 
     const char *message = "Hello !";
-    ssize_t message_size = strlen (message);
+    ssize_t message_size = strlen (message) + 1;
     ssize_t write_size = write (client_socket, message, message_size);
     ASSERT (write_size == message_size, "Failed to write to outgoing connection.");
 

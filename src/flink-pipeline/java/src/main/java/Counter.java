@@ -17,6 +17,7 @@ public class Counter {
             StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment ();
 
             environment
+                // The socket source limits parallelism.
                 .socketTextStream (Shared.HOST, Shared.SOURCE_PORT, "\n")
                 .flatMap ((String line, Collector <Character> collector) -> {
                     for (char character : line.toLowerCase ().toCharArray ()) {
@@ -26,12 +27,14 @@ public class Counter {
                     }
                 })
                 .returns (Character.class)
+                // Parallelism is facilitated here by partitioning.
                 .keyBy ((letter) -> letter)
                 .window (SlidingProcessingTimeWindows.of (Time.seconds (11), Time.seconds (1)))
                 .aggregate (new LetterCountAggregator (), new LetterCountFormatter())
-                // The socket sink is intended for debugging and does not participate in checkpointing.
+                // The socket sink limits parallelism again.
                 .writeToSocket (Shared.HOST, Shared.MONITOR_PORT, new SimpleStringSchema ());
 
+            environment.setParallelism (Runtime.getRuntime ().availableProcessors ());
             environment.execute ("Counter");
         }
         catch (Exception e) {
@@ -58,7 +61,7 @@ public class Counter {
             long count = elements.iterator ().next ();
             String windowStart = formatTime (context.window ().getStart ());
             String windowEnd = formatTime (context.window ().getEnd ());
-            collector.collect (String.format ("%s-%s %s %d\n", windowStart, windowEnd, key, count));
+            collector.collect (String.format ("[%d] %s-%s %s %d\n", Thread.currentThread ().threadId (), windowStart, windowEnd, key, count));
         }
     }
 }

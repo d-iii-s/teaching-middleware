@@ -1,5 +1,7 @@
 # Kafka Stream Client
 
+
+
 ## Running the example
 
 The individual clients expect a Kafka server to be running on `localhost`.

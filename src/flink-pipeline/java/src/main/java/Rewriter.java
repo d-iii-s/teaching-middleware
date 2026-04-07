@@ -10,11 +10,19 @@ public class Rewriter {
             StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment ();
 
             environment
+                // The socket source limits parallelism.
                 .socketTextStream (Shared.HOST, Shared.SOURCE_PORT, "\n")
-                .map (line -> new StringBuilder (line).reverse ().append ('\n').toString ())
-                 // The socket sink is intended for debugging and does not participate in checkpointing.
+                // Parallelism is facilitated here by partitioning.
+                .rebalance ()
+                // The map operator will execute in parallel now,
+                // inserting thread identity to demonstrate.
+                .map (line -> String.format ("[%d] %s\n",
+                    Thread.currentThread ().threadId (),
+                    new StringBuilder (line).reverse ().toString ()))
+                // The socket sink limits parallelism again.
                 .writeToSocket (Shared.HOST, Shared.SINK_PORT, new SimpleStringSchema ());
 
+            environment.setParallelism (Runtime.getRuntime ().availableProcessors ());
             environment.execute ("Rewriter");
         }
         catch (Exception e) {

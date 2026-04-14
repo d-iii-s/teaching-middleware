@@ -20,8 +20,7 @@
     </dependencies>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -54,6 +53,12 @@
                         <id>stream</id>
                         <configuration>
                             <mainClass>StreamSource</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tolerant</id>
+                        <configuration>
+                            <mainClass>TolerantSource</mainClass>
                         </configuration>
                     </execution>
                 </executions>

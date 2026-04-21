@@ -2,6 +2,8 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.WatchedEvent;
 
+import java.nio.charset.StandardCharsets;
+
 
 public class DataConsumer {
 
@@ -19,11 +21,18 @@ public class DataConsumer {
             try {
                 // In any case print the event.
                 System.out.println (event);
-                // Only print the data node if this is a relevant data change event.
-                if ((event.getType () == Watcher.Event.EventType.NodeDataChanged) &&
-                    (event.getPath ().equals (Shared.ZNODE_PATH))) {
-                    // Getting the data also creates new one time event subscription.
-                    System.out.println (new String (zoo.getData (Shared.ZNODE_PATH, true, null)));
+
+                if ((event.getType () == Watcher.Event.EventType.NodeCreated) ||
+                    (event.getType () == Watcher.Event.EventType.NodeDataChanged)) {
+
+                    // Fetching node data establishes new watch.
+                    System.out.println (new String (zoo.getData (Shared.ZNODE_PATH, true, null), StandardCharsets.UTF_8));
+                }
+
+                if (event.getType () == Watcher.Event.EventType.NodeDeleted) {
+
+                    // Testing node existence establishes new watch.
+                    zoo.exists (Shared.ZNODE_PATH, true);
                 }
             } catch (Exception e) {
                 System.out.println (e);

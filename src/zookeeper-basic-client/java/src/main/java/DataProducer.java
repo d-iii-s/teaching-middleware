@@ -5,6 +5,9 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.KeeperException;
 
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class DataProducer {
 
@@ -42,13 +45,12 @@ public class DataProducer {
             };
 
             // Create the data node where the data is published.
-            // The node is ephemeral which means it is deleted on our exit.
             try {
                 zoo.create (
                     Shared.ZNODE_PATH,
                     new byte [0],
                     ZooDefs.Ids.OPEN_ACL_UNSAFE,
-                    CreateMode.EPHEMERAL);
+                    CreateMode.PERSISTENT);
             } catch (KeeperException e) {
                 // Ignore exceptions to permit demonstrating recovery.
                 System.out.println (e);
@@ -59,12 +61,12 @@ public class DataProducer {
                     try {
                         // Publish occasional updates to the data node.
                         // Ignore existing version in this example.
-                        zoo.setData (Shared.ZNODE_PATH, line.getBytes (), -1);
+                        zoo.setData (Shared.ZNODE_PATH, line.getBytes (StandardCharsets.UTF_8), -1);
                     } catch (KeeperException e) {
                         // Ignore exceptions to permit demonstrating recovery.
                         System.out.println (e);
                     }
-                    Thread.sleep ((int) Math.random () * 10000 + 5000);
+                    Thread.sleep (ThreadLocalRandom.current ().nextInt (5000, 15000));
                 }
             }
 

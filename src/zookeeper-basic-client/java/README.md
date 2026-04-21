@@ -1,4 +1,4 @@
-# Zookeper Client
+# ZooKeeper Client
 
 ## Running the example
 
@@ -15,4 +15,5 @@ The ZooKeeper service can also be explored using the command line interface in t
 Use the `ls /` command to see the data node used to exchange data between producer and consumers.
 Use the `get /verse` command to see how the version of the data changes on updates.
 Use the `set /verse "It seems very pretty."` command to publish data.
-Restart the ZooKeeper service to check durability.
+Use the `delete /verse` command to delete data.
+Restart ZooKeeper to check durability.

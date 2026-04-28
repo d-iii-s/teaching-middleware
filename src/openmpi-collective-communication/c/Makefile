@@ -4,11 +4,11 @@
 
 MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 
-CC = gcc
-CC_OPTS = -std=c11 -g $(shell pkg-config --cflags ompi-c) -Wall -Wextra -Wno-unused-parameter -Werror
-LD = gcc
-LD_OPTS = -std=c11 -g $(shell pkg-config --libs ompi-c)
-RN = $(shell pkg-config --variable=prefix ompi-c)/bin/mpirun
+CC = mpicc
+CC_OPTS = -std=c11 -g -Wall -Wextra -Wno-unused-parameter -Werror
+LD = mpicc
+LD_OPTS = -std=c11 -g
+RN = mpirun
 RN_OPTS = --oversubscribe -n 10
 
 # Files

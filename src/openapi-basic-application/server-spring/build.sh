@@ -2,7 +2,7 @@
 set -euo pipefail
 
 rm -rf ./target
-java -jar ../openapi-generator-cli.jar generate -i ../api.yaml -o ./target -g spring
+java -jar ../openapi-generator-cli.jar generate -i ../api.yaml -o ./target -g spring --additional-properties=delegatePattern=true
 
 cd target
 

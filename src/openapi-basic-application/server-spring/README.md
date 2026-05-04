@@ -15,6 +15,6 @@ The user interface is available at https://localhost:8080/v1.
 
 ## Compatibility
 
-In addition to the server controller implementation, the following generated files were modified:
+In addition to the server delegate implementation, the following generated files were modified:
 
 - `application.properties` to inject correct base path prefix

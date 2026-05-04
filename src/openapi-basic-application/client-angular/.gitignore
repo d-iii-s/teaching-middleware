@@ -4,5 +4,8 @@
 # Node packages
 /node_modules
 
+# Package versions
+/package-lock.json
+
 # Generated files
 /src/app/backend

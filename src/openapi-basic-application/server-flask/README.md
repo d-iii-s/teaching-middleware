@@ -11,4 +11,4 @@ Before building the example, be sure to run the `fetch.sh` script in the parent 
 ./run.sh
 ```
 
-The user interface is available at https://localhost:8080/v1/ui.
+The user interface is available at http://localhost:8080/v1/ui.

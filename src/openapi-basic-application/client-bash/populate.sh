@@ -21,7 +21,9 @@ do
 
     LOGIN=$(echo "${FIRST}.${LAST}" | tr 'A-Z' 'a-z')
 
-    target/client.sh createUser \
+    target/client.sh \
+        --host http://localhost:8080 \
+        createUser \
         "firstname==${FIRST}" \
         "lastname==${LAST}" \
         "department==${DEPT}" \

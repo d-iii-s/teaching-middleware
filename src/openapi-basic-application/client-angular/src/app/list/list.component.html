@@ -1,7 +1,9 @@
 <ul>
-  <li *ngFor="let user of users">
-    <a routerLink="/user/{{ user.id }}">
-      {{ user.firstname }} {{ user.lastname }}
-    </a>
-  </li>
+  @for (user of users() ; track user.id) {
+    <li>
+      <a routerLink="/user/{{ user.id }}">
+        {{ user.firstname }} {{ user.lastname }}
+      </a>
+    </li>
+  }
 </ul>

@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>d3s</groupId>
-    <artifactId>protocol-buffer-basics</artifactId>
+    <artifactId>protocol-buffer-reflection</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

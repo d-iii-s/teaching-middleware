@@ -29,10 +29,10 @@ public final class ChildActor {
         }
     }
 
-    public static final class Message implements Command {
+    public static final class MessageCommand implements Command {
         final String message;
 
-        public Message (String message) {
+        public MessageCommand (String message) {
             this.message = message;
         }
     }
@@ -84,7 +84,7 @@ public final class ChildActor {
         @Override public Receive<Command> createReceive () {
             return newReceiveBuilder ()
                 .onMessage (ChildrenCommand.class, this::onChildrenCommand)
-                .onMessage (Message.class, this::onMessage)
+                .onMessage (MessageCommand.class, this::onMessage)
                 .build ();
         }
 
@@ -94,7 +94,7 @@ public final class ChildActor {
             return this;
         }
 
-        private Behavior<Command> onMessage (Message message) {
+        private Behavior<Command> onMessage (MessageCommand message) {
             double choice = random.nextDouble ();
 
             if (choice < 0.6) {

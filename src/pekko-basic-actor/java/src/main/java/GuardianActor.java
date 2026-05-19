@@ -85,7 +85,7 @@ public class GuardianActor extends AbstractBehavior<GuardianActor.Command> {
         String line = POEM [random.nextInt (POEM.length)];
         ActorRef<ChildActor.Command> child = children.get (random.nextInt (children.size ()));
         getContext ().getLog ().info ("Sending to {}: {}", child.path ().name (), line);
-        child.tell (new ChildActor.Message (line));
+        child.tell (new ChildActor.MessageCommand (line));
 
         // Continue with the same behavior.
         return this;
